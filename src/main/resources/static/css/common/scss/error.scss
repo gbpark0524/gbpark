@@ -124,7 +124,6 @@ $border: $size/15;
   height: $size*2;
   width: $size - $border*4;
   margin-left: $border*2;
-  background: url("static/images/common/spaceship.svg") center/contain no-repeat;
   animation: blackhole 4s infinite linear;
   position: absolute;
   bottom: -$size*2;
