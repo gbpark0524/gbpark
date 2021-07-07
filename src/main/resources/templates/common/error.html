@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>You are in black hole</title>
+	<link th:href="@{/images/common/spaceship.svg}" rel="icon"/>
+	<link th:href="@{/css/common/error.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="wrapper">
+	<h1>Hmm.</h1>
+	<p>It seems that you're lost in a perpetual black hole. Let us help guide you out and get you back home.</p>
+	<div class="buttons"><a href="javascript:history.back();">back</a><a href="/main">home</a><br /><span>Help me out</span></div>
+</div>
+<div class="space">
+	<div class="blackhole"></div>
+	<div class="ship"></div>
+</div>
+</body>
+</html>
