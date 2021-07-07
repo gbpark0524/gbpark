@@ -1,0 +1,104 @@
+@import "../../common";
+
+@mixin twist-before($width, $height, $origin1, $origin2, $scale1, $scale2) {
+  content: '';
+  position: absolute;
+  background: $color4;
+  width: $width;
+  height: $height;
+  @each $browser in -moz-, -o-, -webkit-, '' {
+    #{$browser}transition: #{$browser}transform 0.2s;
+    #{$browser}transform-origin: $origin1 $origin2;
+    #{$browser}transform: scale3d($scale1, $scale2, 1);
+  }
+}
+
+@mixin twist-after {
+  @each $browser in -moz-, -o-, -webkit-, '' {
+    position: absolute;
+    #{$browser}transform: scale3d(1, 1, 1);
+    #{$browser}transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    #{$browser}transition-duration: 0.4s;
+  }
+}
+
+body {
+  header {
+    .gnb {
+      display: flex;
+      justify-content: space-around;
+
+      ul {
+        position: fixed;
+        top: -3px;
+        width: 500px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 50px;
+        border: 3px solid $color1;
+        border-radius: 0 0 20px 20px;
+        background-color: white;
+
+        li {
+          color: $color1;
+          position: relative;
+          margin: 0;
+          height: 38px;
+          line-height: 38px;
+
+          &::before {
+            @include twist-before(2px, 100%, 50%, 100%, 1, 0);
+            top: 0;
+            left: 0;
+          }
+
+          &::after {
+            @include twist-before(2px, 100%, 50%, 0%, 1, 0);
+            top: 0;
+            right: 0;
+          }
+
+          a {
+            -webkit-transition: color 0.4s;
+            transition: color 0.4s;
+            padding: 10px;
+            position: relative;
+
+            &:hover, &:focus {
+              color: $color4;
+            }
+
+            &::before {
+              @include twist-before(100%, 2px, 0%, 50%, 0, 1);
+              top: 0;
+              left: 0;
+            }
+
+            &::after {
+              @include twist-before(100%, 2px, 100%, 50%, 0, 1);
+              bottom: 0;
+              left: 0;
+            }
+          }
+        }
+
+        .current {
+          &::before, &::after {
+            @include twist-after;
+          }
+
+          a {
+            &::before, &::after {
+              @include twist-after;
+            }
+          }
+        }
+      }
+    }
+  }
+  .sub-nav {
+    height: 53px;
+    background-color: $color1;
+  }
+}
