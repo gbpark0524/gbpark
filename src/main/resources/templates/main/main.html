@@ -3,11 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>gbPark</title>
-	<link href="" rel="stylesheet"/>
-<!--	<link th:href="@{/css/main/main.css}" rel="stylesheet"/>-->
-	<script defer th:src="@{/js/common/common.js}"></script>
+	<link href="/images/main/Citycons_park.png" rel="icon"/>
+	<link href="/css/main/main.css" rel="stylesheet"/>
+	<script defer src="/js/common/common.js"></script>
 </head>
 <body>
 <div th:include="/common/header"></div>
+<div class="wrapper-main">
+	<img class="img-profile" src="/images/main/profile.jpg" alt="프로필사진">
+	<div class="text-profile">
+		<p>개발 연습 겸 소개 홈페이지 입니다.</p>
+		<p><span class="head-profile">name</span> : Gi_beom Park</p>
+		<p><span class="head-profile">hobby</span> : cook <span class="head-profile">MBTI</span> : INTP</p>
+		<p><span class="head-profile">personal</span> : <a href="mailto:gbpark0524@gmail.com">gbpark0524@gmail.com</a></p>
+		<p><span class="head-profile">personal2</span> : <a href="mailto:gbpark0524@yonsei.ac.kr">gbpark0524@yonsei.ac.kr</a></p>
+		<p><span class="head-profile">company</span> : <a href="mailto:gbpark0524@kaoni.com">gbpark0524@kaoni.com</a></p>
+	</div>
+</div>
 </body>
 </html>
