@@ -14,7 +14,7 @@ public class DoublePriorityQueue {
 //	테스트 4 〉	통과 (0.11ms, 51.9MB)
 //	테스트 5 〉	통과 (0.53ms, 53.4MB)
 //	테스트 6 〉	통과 (0.44ms, 53MB)
-	// avg - ( 0.4216...)
+//	 avg =  0.4216...
 	public int[] solution(String[] operations) {
 		int[] answer = {};
 		LinkedList<Integer> list = new LinkedList<>();
