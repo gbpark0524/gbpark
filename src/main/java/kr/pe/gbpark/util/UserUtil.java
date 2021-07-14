@@ -37,24 +37,24 @@ public class UserUtil {
 		return agent == null ? "" : agent;
 	}
 
-	public static String getBrowser(HttpServletRequest request) {
+	public static Browser getBrowser(HttpServletRequest request) {
 		String agent = getAgent(request);
 
 		if (!agent.isEmpty()) {
 			if (agent.contains("Trident")) {
-				return Browser.MSIE.name();
+				return Browser.MSIE;
 			} else if (agent.contains("Chrome")) {
-				return Browser.Chrome.name();
+				return Browser.CHROME;
 			} else if (agent.contains("Opera")) {
-				return Browser.Opera.name();
+				return Browser.OPERA;
 			} else if (agent.contains("iPhone") && agent.contains("Mobile")) {
-				return Browser.iPhone.name();
+				return Browser.IPHONE;
 			} else if (agent.contains("Android") && agent.contains("Mobile")) {
-				return Browser.Android.name();
+				return Browser.ANDROID;
 			}
 		}
 
-		return Browser.ETC.name();
+		return Browser.ETC;
 	}
 
 
