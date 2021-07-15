@@ -20,16 +20,16 @@ public class PrimeNumber {
 	}
 
 	boolean checkPrime(int num) {
-		if(num == 1 || num == 0) return false;
 		if(num == 2 ) return true;
-		int index = 2;
-		int max = num;
+		if(num < 2 || num % 2 == 0) return false;
+		int index = 3;
+		int max = (int)Math.sqrt(num);
+
 		while(index <= max) {
 			if(num % index == 0) {
 				return false;
 			}
-			index++;
-			max = num/index;
+			index += 2;
 		}
 		return true;
 	}

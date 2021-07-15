@@ -1,17 +1,12 @@
 package kr.pe.gbpark.algorithm.bruteforce;
 
-import static java.lang.Integer.parseInt;
-import static org.assertj.core.api.Assertions.*;
-
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
-@Transactional
+import static org.assertj.core.api.Assertions.assertThat;
+
 class PrimeNumberTest {
 	PrimeNumber pn = new PrimeNumber();
 
