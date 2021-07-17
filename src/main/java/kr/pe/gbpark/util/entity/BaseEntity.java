@@ -1,5 +1,6 @@
-package kr.pe.gbpark.entity.common;
+package kr.pe.gbpark.util.entity;
 
+import kr.pe.gbpark.util.entity.BaseTimeEntity;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;

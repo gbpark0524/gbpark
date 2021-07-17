@@ -1,4 +1,4 @@
-package kr.pe.gbpark.util;
+package kr.pe.gbpark.util.config;
 
 import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

@@ -1,9 +1,11 @@
-package kr.pe.gbpark.util;
+package kr.pe.gbpark.util.service;
 
 import kr.pe.gbpark.util.enums.Browser;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Service
 public class UserUtil {
 	public static String getIP(HttpServletRequest request) {
 		String ip = request.getHeader("X-Forwarded-For");
