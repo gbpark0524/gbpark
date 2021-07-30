@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "../../common";
 
 *, :before, :after {
@@ -82,15 +83,15 @@ a {
 // BLACKHOLE
 
 $size: 75px;
-$border: $size/15;
+$border: math.div($size,15);
 
 .space {
   width: $size;
-  height: calc(50vh + #{$size/2});
-  border-top-left-radius: $size/2;
-  border-top-right-radius: $size/2;
+  height: calc(50vh + #{math.div($size,2)});
+  border-top-left-radius: math.div($size,2);
+  border-top-right-radius: math.div($size,2);
   overflow: hidden;
-  margin: calc(50vh - #{$size/2}) auto 0 auto;
+  margin: calc(50vh - #{math.div($size,2)}) auto 0 auto;
   position: relative;
   pointer-events: none;
   -webkit-transform: translateZ(0);
