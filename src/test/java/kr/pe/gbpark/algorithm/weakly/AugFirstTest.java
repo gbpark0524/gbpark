@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
-@Transactional
 class AugFirstTest {
 	AugFirst augFirst = new AugFirst();
 
