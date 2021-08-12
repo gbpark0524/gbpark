@@ -1,31 +1,27 @@
 @import "../../common";
 
-body {
-  .wrapper-main{
+.icon-list {
+  padding-left: 0;
+  list-style: none;
+  li {
     display: flex;
-    justify-content: center;
-    margin: 100px 0;
-
-    .img-profile{
-      width: 200px;
-      border-radius: 200px;
-    }
-
-    .text-profile{
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: flex-start;
-      padding-left: 100px;
-
-      p {
-        .head-profile{
-          color: $color3;
-          width: 60px;
-          display: inline-block;
-        }
-      }
-    }
+    align-items: flex-start;
+    margin-bottom: .25rem;
   }
+  li::before {
+    display: block;
+    flex-shrink: 0;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5rem;
+    content: "";
+  }
+}
+
+.cate-list li::before {
+  background: url("/images/main/card-text.svg") no-repeat center center / 100% auto;
+}
+
+.linked li::before {
+  background: url("/images/main/link-45deg.svg") no-repeat center center / 100% auto;
 }

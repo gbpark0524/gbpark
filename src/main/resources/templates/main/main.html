@@ -6,18 +6,77 @@
 	<link href="/images/main/Citycons_park.png" rel="icon"/>
 	<link href="/css/main/main.css" rel="stylesheet"/>
 	<script defer src="/js/common/common.js"></script>
+	<script defer src="/bootstrap/js/bootstrap.min.js"></script>
+	<script defer src="/js/main/main.js"></script>
 </head>
 <body>
 <div th:include="/common/header"></div>
-<div class="wrapper-main">
-	<img class="img-profile" src="/images/main/profile.jpg" alt="프로필사진">
-	<div class="text-profile">
-		<p>개발 연습 겸 소개 홈페이지 입니다.</p>
-		<p><span class="head-profile">name</span> : Gi_beom Park</p>
-		<p><span class="head-profile">hobby</span> : cook <span class="head-profile">MBTI</span> : INTP</p>
-		<p><span class="head-profile">personal</span> : <a href="mailto:gbpark0524@gmail.com">gbpark0524@gmail.com</a></p>
-		<p><span class="head-profile">personal2</span> : <a href="mailto:gbpark0524@yonsei.ac.kr">gbpark0524@yonsei.ac.kr</a></p>
-		<p><span class="head-profile">company</span> : <a href="mailto:gbpark0524@kaoni.com">gbpark0524@kaoni.com</a></p>
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+	<main>
+		<div class="row mb-5">
+			<div class="col-md-4 d-none d-md-block p-5">
+				<img class="img-fluid rounded-circle" src="/images/main/profile.jpg" alt="프로필사진">
+			</div>
+			<div class="col-md-8 col-12 align-self-center">
+				<h1>Welcome</h1>
+				<p class="fs-5">gbPark devSite 입니다.</p>
+				<p class="fs-5">버그나 개선사항을 알려주시면 많은 도움이 됩니다🙇🏻‍️</p>
+				<div class="mb-5 col-2">
+					<button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" data-bs-target="#toMeModal">To Me</button>
+				</div>
+			</div>
+		</div>
+
+		<hr class="col-3 col-md-12 mb-5">
+
+		<div class="row g-5">
+			<div class="col-md-6">
+				<h2>About Me</h2>
+				<p></p>
+				<ul class="icon-list cate-list">
+					<li>name : Gi_beom Park</li>
+					<li>hobby : cooking pasta</li>
+					<li>MBTI : INTP</li>
+				</ul>
+			</div>
+
+			<div class="col-md-6">
+				<h2>Sites</h2>
+				<p></p>
+				<ul class="icon-list linked">
+					<li>notion 	: <a href="https://www.notion.so/gbpark0524/gbPark-Blog-5be9b381576d4aabba49300118ada576">gbpark-Blog</a></li>
+					<li>git 	: <a href="https://github.com/gbpark0524/gbpark">github/gbpark</a></li>
+					<li>mail 	: <a href="mailto:gbpark0524@gmail.com">gbpark0524@gmail.com</a></li>
+					<li>company : <a href="mailto:gbpark0524@kaoni.com">gbpark0524@kaoni.com</a></li>
+				</ul>
+			</div>
+		</div>
+	</main>
+</div>
+<div class="modal fade" id="toMeModal" tabindex="-1" aria-labelledby="toMeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="toMeModalLabel">To gbPark</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="mb-3">
+						<label for="tome_title" class="col-form-label">title:</label>
+						<input type="text" class="form-control" id="tome_title">
+					</div>
+					<div class="mb-3">
+						<label for="tome_message" class="col-form-label">Message:</label>
+						<textarea class="form-control" id="tome_message" style="height: 230px;"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Send message</button>
+			</div>
+		</div>
 	</div>
 </div>
 </body>
