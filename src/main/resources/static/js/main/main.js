@@ -1,17 +1,25 @@
 // modal event
 document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
-    document.getElementById('title').focus();
+    document.getElementById('tome_title').focus();
 });
+
+const toastEmpty = document.querySelector('.toast');
+const alertEmpty = new bootstrap.Toast(toastEmpty);
 
 function sendMsg() {
     // title
-    const title = document.getElementById("tome_title");
-    const message = document.getElementById("tome_message");
+    const title = document.getElementById("tome_title").value;
+    const message = document.getElementById("tome_message").value;
     toMeSave(title,message);
 }
 
 // to me
 function toMeSave(title, message) {
+    if(!title || !message) {
+        alertEmpty.show();
+        return;
+    }
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -27,8 +35,8 @@ function toMeSave(title, message) {
         redirect: 'follow'
     };
 
-    fetch("localhost:8080/tome", requestOptions)
+    fetch("/tome", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        .then(result => alert(result))
+        .catch(error => alert(error));
 }

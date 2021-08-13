@@ -20,7 +20,7 @@ public class ToMeService {
 	}
 
 	public LogicResult ToMeSave(String title, String message) {
-		if(title.isEmpty() || message.isEmpty()) return ToMeLogicResult.EMPTY;
+		if(title == null || message == null || title.length() == 0 || message.length() == 0) return ToMeLogicResult.EMPTY;
 
 		ToMe tome = new ToMe(title, message);
 		try {
