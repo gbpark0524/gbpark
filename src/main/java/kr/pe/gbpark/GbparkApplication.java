@@ -1,8 +1,6 @@
 package kr.pe.gbpark;
 
 import kr.pe.gbpark.util.service.UserUtil;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
