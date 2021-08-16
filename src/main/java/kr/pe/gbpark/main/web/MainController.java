@@ -10,11 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
@@ -31,8 +29,8 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String rootMain(Model model) {
-		List<NotionDto> newNotionList = notionService.getNewNotionList();
-		model.addAttribute("newNotionList", newNotionList);
+		NotionDto notionDto = notionService.getNewNotionList(12);
+		model.addAttribute("notionDto", notionDto);
 		return "main/main";
 	}
 
@@ -43,5 +41,12 @@ public class MainController {
 		String message = toMeDto.getMessage();
 		LogicResult logicResult = toMeService.ToMeSave(title, message);
 		return logicResult.getMessage();
+	}
+
+	@GetMapping("/notion")
+	@ResponseBody
+	public String getNotion(@RequestParam("pageSize") int pageSize) {
+		NotionDto notionDto = notionService.getNewNotionList(pageSize);
+		return String.valueOf(notionDto);
 	}
 }

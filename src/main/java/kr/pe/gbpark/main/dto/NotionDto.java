@@ -6,36 +6,47 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public abstract class NotionDto {
+public class NotionDto {
 
-
-	@JsonProperty("url")
-	private String url;
-	@JsonProperty("properties")
-	private Properties properties;
-	@JsonProperty("archived")
-	private boolean archived;
-	@JsonProperty("parent")
-	private Parent parent;
-	@JsonProperty("last_edited_time")
-	private String last_edited_time;
-	@JsonProperty("created_time")
-	private String created_time;
-	@JsonProperty("id")
-	private String id;
+	@JsonProperty("has_more")
+	private boolean hasMore;
+	@JsonProperty("results")
+	private List<Results> results;
 	@JsonProperty("object")
 	private String object;
+	@JsonProperty("next_cursor")
+	private String nextCursor;
+
+	@Data
+	public static class Results {
+		@JsonProperty("url")
+		private String url;
+		@JsonProperty("properties")
+		private Properties properties;
+		@JsonProperty("archived")
+		private boolean archived;
+		@JsonProperty("parent")
+		private Parent parent;
+		@JsonProperty("last_edited_time")
+		private String lastEditedTime;
+		@JsonProperty("created_time")
+		private String createdTime;
+		@JsonProperty("id")
+		private String id;
+		@JsonProperty("object")
+		private String object;
+	}
 
 	@Data
 	public static class Properties {
 		@JsonProperty("title")
-		private PropertiesTitle propertiesTitle;
+		private Title title;
 	}
 
 	@Data
-	public static class PropertiesTitle {
+	public static class Title {
 		@JsonProperty("title")
-		private List<Title> title;
+		private List<TitleInTitle> title;
 		@JsonProperty("type")
 		private String type;
 		@JsonProperty("id")
@@ -43,15 +54,17 @@ public abstract class NotionDto {
 	}
 
 	@Data
-	public static class Title {
+	public static class TitleInTitle {
 		@JsonProperty("plain_text")
-		private String plain_text;
+		private String plainText;
 		@JsonProperty("annotations")
 		private Annotations annotations;
 		@JsonProperty("text")
 		private Text text;
 		@JsonProperty("type")
 		private String type;
+		@JsonProperty("href")
+		private String href;
 	}
 
 	@Data
@@ -74,12 +87,14 @@ public abstract class NotionDto {
 	public static class Text {
 		@JsonProperty("content")
 		private String content;
+		@JsonProperty("link")
+		private String link;
 	}
 
 	@Data
 	public static class Parent {
 		@JsonProperty("page_id")
-		private String page_id;
+		private String pageId;
 		@JsonProperty("type")
 		private String type;
 	}

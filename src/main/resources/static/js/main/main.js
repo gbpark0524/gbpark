@@ -1,4 +1,6 @@
-// modal event
+/*
+* modal event
+*/
 document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
     document.getElementById('tome_title').focus();
 });
@@ -14,7 +16,9 @@ function sendMsg() {
     toMeSave(title,message);
 }
 
-// to me
+/*
+* to me
+*/
 function toMeSave(title, message) {
     if(!title || !message) {
         alertEmpty.show();
