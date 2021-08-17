@@ -18,14 +18,16 @@ public class NotionService {
 	@Value("${notion.config.authorization}")
 	private String AUTHORIZATION;
 
-	public NotionDto getNewNotionList(int pageSize) {
+	public NotionDto getNewNotionList(int pageSize, String next) {
 		final String notionVersion = "2021-07-27";
 		final String index = "log";
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		MediaType mediaType = MediaType.parse("application/json");
 		String jsonStr = "{\"query\":\"" + index + "\",\"sort\":{\"direction\":\"descending\",\"timestamp\":\"last_edited_time\"},\"filter\":{\"property\":\"object\",\"value\":\"page\"}";
-		jsonStr += pageSize == -1 ? "}" : ",\"page_size\":" + pageSize + "}";
+		jsonStr += pageSize == -1 ? "" : ",\"page_size\":" + pageSize;
+		jsonStr += next == null ? "" : ",\"start_cursor\":\"" + next + "\"";
+		jsonStr += "}";
 		RequestBody body = RequestBody.create(jsonStr, mediaType);
 		ObjectMapper objectMapper = new ObjectMapper();
 

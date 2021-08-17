@@ -29,7 +29,7 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String rootMain(Model model) {
-		NotionDto notionDto = notionService.getNewNotionList(12);
+		NotionDto notionDto = notionService.getNewNotionList(12, null);
 		model.addAttribute("notionDto", notionDto);
 		return "main/main";
 	}
@@ -45,8 +45,8 @@ public class MainController {
 
 	@GetMapping("/notion")
 	@ResponseBody
-	public String getNotion(@RequestParam("pageSize") int pageSize) {
-		NotionDto notionDto = notionService.getNewNotionList(pageSize);
+	public String getNotion(@RequestParam(required = false) int pageSize, @RequestParam(required = false) String next) {
+		NotionDto notionDto = notionService.getNewNotionList(pageSize, next);
 		return String.valueOf(notionDto);
 	}
 }

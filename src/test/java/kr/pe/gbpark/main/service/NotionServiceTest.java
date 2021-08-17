@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
 class NotionServiceTest {
 	@Autowired
 	NotionService notionService;
 
 	@Test
 	void getNewNotionList() throws Exception {
-		NotionDto notionDto = notionService.getNewNotionList(10);
+		NotionDto notionDto = notionService.getNewNotionList(5, "52ab76b0-05d5-4af7-971b-243ec522a2dc");
 		assertThat(notionDto.getObject()).isEqualTo("list");
-		assertThat(notionDto.getResults().size()).isEqualTo(10);
+		assertThat(notionDto.getResults().size()).isEqualTo(5);
+		System.out.println("notionDto = " + notionDto.toString());
 	}
 }
