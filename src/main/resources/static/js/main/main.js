@@ -25,18 +25,13 @@ function toMeSave(title, message) {
         return;
     }
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-        "title": title,
-        "message": message
-    });
+    var formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("message", message);
 
     const requestOptions = {
         method: 'POST',
-        headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
     };
 
@@ -44,5 +39,6 @@ function toMeSave(title, message) {
         .then(response => response.text())
         .then(result => alert(result))
         .then(() => toMeModal.hide())
-        .catch(error => alert(error));
+        .catch(error => alert(error))
+        .then(error => console.log(error));
 }

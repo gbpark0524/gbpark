@@ -36,9 +36,7 @@ public class MainController {
 
 	@PostMapping("/tome")
 	@ResponseBody
-	public String saveToMe(@RequestBody ToMeDto toMeDto) {
-		String title = toMeDto.getTitle();
-		String message = toMeDto.getMessage();
+	public String saveToMe(@RequestParam String title, @RequestParam String message) {
 		LogicResult logicResult = toMeService.ToMeSave(title, message);
 		return logicResult.getMessage();
 	}
