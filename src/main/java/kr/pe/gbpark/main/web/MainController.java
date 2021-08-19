@@ -29,8 +29,6 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String rootMain(Model model) {
-		NotionDto notionDto = notionService.getNewNotionList(12, null);
-		model.addAttribute("notionDto", notionDto);
 		return "main/main";
 	}
 
