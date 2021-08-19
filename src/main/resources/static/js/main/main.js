@@ -1,3 +1,7 @@
+window.onload = (event) => {
+    getNotionList(10);
+};
+
 /*
 * modal event
 */
@@ -15,7 +19,37 @@ function sendMsg() {
     const message = document.getElementById("tome_message").value;
     toMeSave(title,message);
 }
+/*
+* notion
+ */
+function getNotionList(pageSize) {
+    const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
 
+    fetch("/notion?pageSize=" + pageSize, requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            displayNotionList(json.results);
+        })
+        .catch(error => console.log('error', error));
+}
+
+function displayNotionList(results) {
+    const notionList = document.getElementById("list-notion");
+    while (notionList.hasChildNodes()) { notionList.removeChild(notionList.firstChild);}
+    for (const result of results) {
+        const list = document.createElement('li');
+        list.className = "child-notion";
+        const link = document.createElement('a');
+        link.setAttribute("href",result.url);
+        const title = result.properties.title.title[0].plain_text;
+        link.innerText = title.replace("- log","") + " : " + result.last_edited_time.substring(0,10);
+        notionList.appendChild(list);
+        list.appendChild(link);
+    }
+}
 /*
 * to me
 */

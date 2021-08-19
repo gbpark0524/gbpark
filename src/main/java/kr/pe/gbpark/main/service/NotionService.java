@@ -18,7 +18,7 @@ public class NotionService {
 	@Value("${notion.config.authorization}")
 	private String AUTHORIZATION;
 
-	public NotionDto getNewNotionList(int pageSize, String next) {
+	public String getNewNotionList(int pageSize, String next) {
 		final String notionVersion = "2021-07-27";
 		final String index = "log";
 
@@ -44,7 +44,7 @@ public class NotionService {
 
 			String strObj = Objects.requireNonNull(response.body()).string();
 
-			return  objectMapper.readValue(strObj, NotionDto.class);
+			return  strObj;
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

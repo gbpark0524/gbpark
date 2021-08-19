@@ -42,7 +42,6 @@ public class MainController {
 	@GetMapping("/notion")
 	@ResponseBody
 	public String getNotion(@RequestParam(required = false) int pageSize, @RequestParam(required = false) String next) {
-		NotionDto notionDto = notionService.getNewNotionList(pageSize, next);
-		return String.valueOf(notionDto);
+		return notionService.getNewNotionList(pageSize, next);
 	}
 }
