@@ -19,7 +19,7 @@ public class NotionService {
 	private String AUTHORIZATION;
 
 	public String getNewNotionList(int pageSize, String next) {
-		final String notionVersion = "2021-07-27";
+		final String notionVersion = "2021-05-13";
 		final String index = "log";
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();

@@ -23,6 +23,8 @@ function sendMsg() {
 * notion
  */
 function getNotionList(pageSize) {
+    const loading = document.getElementById('loading-notion');
+    loading.removeAttribute('hidden');
     const requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -31,6 +33,7 @@ function getNotionList(pageSize) {
     fetch("/notion?pageSize=" + pageSize, requestOptions)
         .then(response => response.json())
         .then(json => {
+            loading.setAttribute('hidden', '');
             displayNotionList(json.results);
         })
         .catch(error => console.log('error', error));
