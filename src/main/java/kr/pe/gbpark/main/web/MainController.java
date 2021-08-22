@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @Controller
 public class MainController {
-	final Logger logger = LoggerFactory.getLogger(ToMeService.class);
+	final Logger logger = LoggerFactory.getLogger(MainController.class);
 	final ToMeService toMeService;
 	final NotionService notionService;
 
