@@ -20,7 +20,7 @@ public class NotionService {
 
 	public String getNewNotionList(int pageSize, String next) {
 		final String notionVersion = "2021-05-13";
-		final String index = "log";
+		final String index = "- log";
 
 		OkHttpClient client = new OkHttpClient().newBuilder().build();
 		MediaType mediaType = MediaType.parse("application/json");
