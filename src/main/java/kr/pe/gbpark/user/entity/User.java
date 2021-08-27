@@ -1,5 +1,6 @@
 package kr.pe.gbpark.user.entity;
 
+import kr.pe.gbpark.util.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends BaseTimeEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
@@ -23,4 +24,17 @@ public class User {
 	private String email;
 	private String name;
 	private String pw;
+	private int gbPoint;
+
+	public User(String email, String name, String pw) {
+		this.email = email;
+		this.name = name;
+		this.pw = pw;
+		this.gbPoint = 5000;
+	}
+
+	public int changePoint(int diff) {
+		this.gbPoint += diff;
+		return this.gbPoint;
+	}
 }
