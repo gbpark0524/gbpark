@@ -21,13 +21,13 @@ public class User extends BaseTimeEntity {
 	@Column(name = "user_id")
 	private Long id;
 
-	private String email;
+	private String mail;
 	private String name;
 	private String pw;
 	private int gbPoint;
 
-	public User(String email, String name, String pw) {
-		this.email = email;
+	public User(String mail, String name, String pw) {
+		this.mail = mail;
 		this.name = name;
 		this.pw = pw;
 		this.gbPoint = 5000;

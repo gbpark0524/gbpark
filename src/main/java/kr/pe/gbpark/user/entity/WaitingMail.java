@@ -21,6 +21,17 @@ public class WaitingMail extends BaseTimeEntity{
 	@Column(name = "w_mail_id")
 	private Long id;
 
-	private String email;
-	private boolean certification;
+	private String mail;
+	private String certification;
+	private String code;
+
+	public WaitingMail(String mail, String code) {
+		this.mail = mail;
+		this.certification = Certification.WAITING.name();
+		this.code = code;
+	}
+
+	public void changeStatus(Certification certification) {
+		this.certification = certification.name();
+	}
 }
