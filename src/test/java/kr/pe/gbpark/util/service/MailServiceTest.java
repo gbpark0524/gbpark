@@ -14,6 +14,9 @@ import java.security.SecureRandom;
 @SpringBootTest
 class MailServiceTest {
 
+	@Autowired
+	MailService mailService;
+
 	@Test
 	void sendMailTest() {
 		MailDto mailDto = new MailDto();
@@ -21,7 +24,7 @@ class MailServiceTest {
 		mailDto.setMessage("test");
 		mailDto.setAdder("gbpark0524@gmail.com");
 
-		MailService.sendMail(mailDto);
+		mailService.sendMail(mailDto);
 	}
 	
 	@Test

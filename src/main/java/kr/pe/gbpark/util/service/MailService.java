@@ -1,27 +1,36 @@
 package kr.pe.gbpark.util.service;
 
 import kr.pe.gbpark.util.dto.MailDto;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.security.SecureRandom;
 
 @Service
-public class MailService {
+public class MailService{
+
+	private JavaMailSender mailSender;
+
+	public MailService(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
 	// 공통 메일 전송
-	public static void sendMail(MailDto mailDto) {
-		JavaMailSender mailSender = new JavaMailSenderImpl();
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo(mailDto.getAdder());
-		message.setSubject(mailDto.getTitle());
-		message.setText(mailDto.getMessage());
-
-		mailSender.send(message);
+	public void sendMail(MailDto mailDto) {
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true,"utf-8");
+			helper.setText(mailDto.getMessage(), true);
+			helper.setTo(mailDto.getAdder());
+			helper.setSubject(mailDto.getTitle());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		mailSender.send(mimeMessage);
 	}
 
 	public static String generateCode(double digit) {
