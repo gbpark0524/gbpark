@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @SpringBootTest
 class MailServiceTest {
@@ -17,8 +19,11 @@ class MailServiceTest {
 	@Test
 	void sendMailTest() {
 		MailDto mailDto = new MailDto();
-		mailDto.setTitle("test");
-		mailDto.setMessage("test");
+		LocalDate localDate = LocalDate.now();
+		LocalTime localTime = LocalTime.now();
+
+		mailDto.setTitle("mail test. It isn't supposed to display <div> tag");
+		mailDto.setMessage("<div>it's mail test - " + localDate + " # " + localTime + "</div>");
 		mailDto.setAdder("gbpark0524@gmail.com");
 
 		MailService.sendMail(mailDto);
