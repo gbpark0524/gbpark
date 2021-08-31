@@ -8,6 +8,8 @@ import kr.pe.gbpark.util.dto.MailDto;
 import kr.pe.gbpark.util.service.MailService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 	final UserRepository userRepository;
@@ -34,7 +36,17 @@ public class UserService {
 	// 회원가입 메일 인증 코드 전송
 	public void sendCodeJoinMail(String mail) {
 		String code = MailService.generateCode(6);
+		WaitingMail waitingMail;
 		MailDto mailDto = new MailDto();
+		Optional<WaitingMail> wMail = waitingMailRepository.findByMail(mail);
+
+		if (wMail.isPresent()) {
+			waitingMail = wMail.get();
+			waitingMail.changeCode(code);
+		} else {
+			waitingMail = new WaitingMail(mail, code);
+		}
+
 		mailDto.setAdder(mail);
 		mailDto.setTitle("gbPark 회원가입 인증 코드 입니다.");
 		mailDto.setMessage("<body><div class=\"head\" style=\"text-align: center;margin: 0 auto;width: 25vw;\">안녕하세요! gbPark입니다.</div>" +
