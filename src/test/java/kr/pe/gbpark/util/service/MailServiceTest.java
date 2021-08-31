@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @SpringBootTest
 class MailServiceTest {
 
-	@Test
+	/*@Test
 	void sendMailTest() {
 		MailDto mailDto = new MailDto();
 		LocalDate localDate = LocalDate.now();
@@ -27,7 +27,7 @@ class MailServiceTest {
 		mailDto.setAdder("gbpark0524@gmail.com");
 
 		MailService.sendMail(mailDto);
-	}
+	}*/
 	
 	@Test
 	void codeGenTest() {

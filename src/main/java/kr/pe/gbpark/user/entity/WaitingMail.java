@@ -34,4 +34,8 @@ public class WaitingMail extends BaseTimeEntity{
 	public void changeStatus(Certification certification) {
 		this.certification = certification.name();
 	}
+
+	public void changeCode(String code) {
+		this.code = code;
+	}
 }
