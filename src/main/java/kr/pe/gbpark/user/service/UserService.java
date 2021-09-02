@@ -22,12 +22,6 @@ public class UserService {
 		this.mailService = mailService;
 	}
 
-	public void sendValidMail(String email) {
-
-		// TODO 공통 메일 전송 util
-		// util.sendMail(email, str);
-	}
-
 	public void UserJoin(String email, String name, String pw) {
 		User user = new User(email, name, pw);
 		userRepository.save(user);
@@ -54,7 +48,7 @@ public class UserService {
 				"<p style=\"width: 100%; text-align: center;\">" + code + "</p>" +
 				"</div><div class=\"tail\" style=\"text-align: center;margin: 0 auto;width: 25vw;\">해당 코드를 입력하세요</div>");
 		mailService.sendMail(mailDto);
-		WaitingMail waitingMail = new WaitingMail(mail, code);
+		waitingMail = new WaitingMail(mail, code);
 		waitingMailRepository.save(waitingMail);
 	}
 }
