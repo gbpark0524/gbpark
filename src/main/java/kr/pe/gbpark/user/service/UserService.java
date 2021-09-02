@@ -1,5 +1,6 @@
 package kr.pe.gbpark.user.service;
 
+import kr.pe.gbpark.user.entity.Certification;
 import kr.pe.gbpark.user.entity.User;
 import kr.pe.gbpark.user.entity.WaitingMail;
 import kr.pe.gbpark.user.repository.UserRepository;
@@ -50,5 +51,27 @@ public class UserService {
 		mailService.sendMail(mailDto);
 		waitingMail = new WaitingMail(mail, code);
 		waitingMailRepository.save(waitingMail);
+	}
+
+	// 메일 인증
+	public String verifyMail(String mail, String code) {
+		Optional<WaitingMail> wMail = waitingMailRepository.findByMail(mail);
+		String result = "fail";
+		if(!wMail.isPresent()) {
+			result = "메일 인증 실패";
+		} else {
+			WaitingMail waitingMail = wMail.get();
+			String rightCode = waitingMail.getCode();
+			if(rightCode.equals(code)) {
+				waitingMail.changeStatus(Certification.VERIFY);
+				waitingMailRepository.save(waitingMail);
+				result = "인증성공";
+			} else {
+				waitingMail.wrongTry();
+				waitingMailRepository.save(waitingMail);
+				result = "인증 실패하셨습니다. 시도 횟수 " + waitingMail.getTries();
+			}
+		}
+		return result;
 	}
 }

@@ -16,4 +16,10 @@ class UserServiceTest {
 	void sendCodeJoinMail() {
 		userService.sendCodeJoinMail("gbpark0524@gmail.com");
 	}
+
+	@Test
+	void verifyMailTest() {
+		String s = userService.verifyMail("gbpark0524@gmail.com", "997613");
+		System.out.println("s = " + s);
+	}
 }

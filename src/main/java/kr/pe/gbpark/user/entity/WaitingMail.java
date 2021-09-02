@@ -24,11 +24,13 @@ public class WaitingMail extends BaseTimeEntity{
 	private String mail;
 	private String certification;
 	private String code;
+	private int tries;
 
 	public WaitingMail(String mail, String code) {
 		this.mail = mail;
 		this.certification = Certification.WAITING.name();
 		this.code = code;
+		this.tries = 0;
 	}
 
 	public void changeStatus(Certification certification) {
@@ -37,5 +39,10 @@ public class WaitingMail extends BaseTimeEntity{
 
 	public void changeCode(String code) {
 		this.code = code;
+	}
+
+	public void wrongTry() {
+		this.tries ++;
+		if(tries > 5) changeStatus(Certification.EXCEEDED);
 	}
 }
