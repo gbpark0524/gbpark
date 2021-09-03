@@ -23,9 +23,22 @@ public class UserService {
 		this.mailService = mailService;
 	}
 
-	public void UserJoin(String email, String name, String pw) {
-		User user = new User(email, name, pw);
-		userRepository.save(user);
+	public String  UserJoin(String mail, String name, String pw) {
+		User user = new User(mail, name, pw);
+		String result = "";
+		Optional<WaitingMail> wMail = waitingMailRepository.findByMail(mail);
+
+		if(wMail.isPresent()) {
+			WaitingMail waitingMail = wMail.get();
+			if((waitingMail.getCertification().equals(Certification.VERIFY.name()))) {
+				userRepository.save(user);
+				result = "회원 가입에 성고했습니다.";
+			} else {
+
+			}
+		}
+		result = "인증받지 않은 메일입니다.";
+		return  result;
 	}
 
 	// 회원가입 메일 인증 코드 전송
