@@ -32,12 +32,13 @@ public class UserService {
 			WaitingMail waitingMail = wMail.get();
 			if((waitingMail.getCertification().equals(Certification.VERIFY.name()))) {
 				userRepository.save(user);
-				result = "회원 가입에 성고했습니다.";
+				result = "회원 가입에 성공했습니다.";
 			} else {
-
+				result = "인증받지 않은 메일입니다.";
 			}
+		} else {
+				result = "인증받지 않은 메일입니다.";
 		}
-		result = "인증받지 않은 메일입니다.";
 		return  result;
 	}
 
