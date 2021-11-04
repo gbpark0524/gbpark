@@ -1,3 +1,7 @@
+window.addEventListener('load', function() {
+    prohibitIE();
+});
+
 function giveOverEvent(nodes) {
     Array.prototype.forEach.call(nodes, function(e){
         // 마우스 오버 이벤트
@@ -14,5 +18,20 @@ function giveOverEvent(nodes) {
             });
         });
     });
+}
+
+function prohibitIE() {
+    if(checkIE()) {
+        alert("본 페이지는 ie를 지원하지 않습니다. \n 다른 브라우저를 이용하시기 바랍니다.");
+        window.close();
+    }
+}
+
+function checkIE() {
+    const ua = window.navigator.userAgent;
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+
+    return (msie > 0 || trident > 0);
 }
 
