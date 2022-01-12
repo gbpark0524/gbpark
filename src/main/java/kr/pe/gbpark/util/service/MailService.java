@@ -13,7 +13,7 @@ import java.security.SecureRandom;
 @Service
 public class MailService{
 
-	private JavaMailSender mailSender;
+	private final JavaMailSender mailSender;
 
 	public MailService(JavaMailSender mailSender) {
 		this.mailSender = mailSender;

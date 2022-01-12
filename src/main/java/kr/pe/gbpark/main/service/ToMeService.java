@@ -19,10 +19,10 @@ public class ToMeService {
 		this.toMeRepository = toMeRepository;
 	}
 
-	public LogicResult ToMeSave(String title, String message) {
+	public LogicResult ToMeSave(String title, String tel, String message) {
 		if(title == null || message == null || title.length() == 0 || message.length() == 0) return ToMeLogicResult.EMPTY;
 
-		ToMe tome = new ToMe(title, message);
+		ToMe tome = new ToMe(title, tel, message);
 		try {
 			toMeRepository.save(tome);
 		} catch (Exception e) {

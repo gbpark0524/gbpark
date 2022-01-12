@@ -16,8 +16,9 @@ const alertEmpty = new bootstrap.Toast(toastEmpty);
 function sendMsg() {
     // title
     const title = document.getElementById("tome_title").value;
+    const tel = document.getElementById("tome_tel").value;
     const message = document.getElementById("tome_message").value;
-    toMeSave(title,message);
+    toMeSave(title,tel,message);
 }
 /*
 * notion
@@ -56,7 +57,7 @@ function displayNotionList(results) {
 /*
 * to me
 */
-function toMeSave(title, message) {
+function toMeSave(title, tel, message) {
     if(!title || !message) {
         alertEmpty.show();
         return;
@@ -65,6 +66,7 @@ function toMeSave(title, message) {
     var formdata = new FormData();
     formdata.append("title", title);
     formdata.append("message", message);
+    formdata.append("tel", tel);
 
     const requestOptions = {
         method: 'POST',

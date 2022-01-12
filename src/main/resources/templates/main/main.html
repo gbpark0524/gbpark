@@ -23,7 +23,7 @@
 				<p class="fs-5">gbPark devSite 입니다.</p>
 				<p class="fs-5">버그나 개선사항을 알려주시면 많은 도움이 됩니다🙇🏻‍️</p>
 				<div class="mb-5 col-md-8">
-					<button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" data-bs-target="#toMeModal">To Me</button>
+					<button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" data-bs-target="#toMeModal">Contact Me</button>
 				</div>
 			</div>
 		</div>
@@ -88,8 +88,12 @@
 			<div class="modal-body">
 				<form>
 					<div class="mb-3">
-						<label for="tome_title" class="col-form-label">title:</label>
+						<label for="tome_title" class="col-form-label">Title:</label>
 						<input type="text" class="form-control" id="tome_title">
+					</div>
+					<div class="mb-3">
+						<label for="tome_tel" class="col-form-label">Email or phone:</label>
+						<input type="text" class="form-control" id="tome_tel">
 					</div>
 					<div class="mb-3">
 						<label for="tome_message" class="col-form-label">Message:</label>
@@ -102,7 +106,7 @@
 					<div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
 						<div class="d-flex">
 							<div class="toast-body">
-								빈칸이 존재합니다
+								제목과 내용 입력은 필수입니다.
 							</div>
 							<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
 						</div>

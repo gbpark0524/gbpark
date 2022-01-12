@@ -22,10 +22,12 @@ public class ToMe extends BaseEntity {
 	private Long id;
 
 	private String title;
+	private String tel;
 	private String message;
 
-	public ToMe(String title, String message) {
+	public ToMe(String title, String tel, String message) {
 		this.title = title;
+		this.tel = tel;
 		this.message = message;
 	}
 }

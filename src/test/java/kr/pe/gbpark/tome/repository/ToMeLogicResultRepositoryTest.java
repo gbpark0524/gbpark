@@ -19,12 +19,17 @@ class ToMeLogicResultRepositoryTest {
 
 	@Test
 	void toMeRepositoryTest() {
-		ToMe tome = new ToMe("tomeTest", "It's test");
-		ToMe save = toMeRepository.save(tome);
+		// measuring default size
+		List<ToMe> defaultList = toMeRepository.findAll();
+		int defaultSize = defaultList.size();
 
+		// inserting data
+		ToMe tome = new ToMe("tomeTest","0102018XXXX", "It's test");
+		ToMe save = toMeRepository.save(tome);
 		List<ToMe> all = toMeRepository.findAll();
 
-		assertThat(all.size()).isGreaterThan(0);
+		// testing data size + 1
+		assertThat(all.size()).isEqualTo(defaultSize + 1);
 		ToMe gotTome = all.get(all.size() - 1);
 
 		assertThat(tome).isEqualTo(gotTome);
