@@ -1,6 +1,5 @@
 package kr.pe.gbpark.main.service;
 
-import kr.pe.gbpark.algorithm.binarysearch.Immigration;
 import kr.pe.gbpark.util.enums.results.LogicResult;
 import lombok.AllArgsConstructor;
 
