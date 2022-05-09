@@ -21,9 +21,17 @@ public class Project extends BaseTimeEntity {
 	@Column(name = "project_id")
 	private Long id;
 
-	private int order;
+	private int orderNumber;
 	private String title;
 	private String link;
 	private String colorCode;
 	private String description;
+
+	public Project(String title, String link, String colorCode, String description) {
+		this.title = title;
+		this.link = link;
+		this.colorCode = colorCode;
+		this.description = description;
+		this.orderNumber = 0;
+	}
 }
