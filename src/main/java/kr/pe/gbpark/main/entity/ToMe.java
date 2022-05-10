@@ -1,33 +1,21 @@
 package kr.pe.gbpark.main.entity;
 
-import kr.pe.gbpark.util.entity.BaseEntity;
+import kr.pe.gbpark.util.entity.Board;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 @Entity
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ToMe extends BaseEntity {
-	@Id
-	@GeneratedValue
-	@Column(name = "to_me_id")
-	private Long id;
-
-	private String title;
+public class ToMe extends Board {
 	private String tel;
-	private String message;
 
-	public ToMe(String title, String tel, String message) {
-		this.title = title;
+	public ToMe(String title, String content, String tel) {
+		super(title, content);
 		this.tel = tel;
-		this.message = message;
 	}
 }
