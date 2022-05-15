@@ -13,7 +13,6 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn
 public class Board extends BaseEntity {
 	@Id
 	@GeneratedValue
