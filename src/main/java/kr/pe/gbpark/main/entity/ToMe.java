@@ -9,7 +9,6 @@ import lombok.ToString;
 import javax.persistence.Entity;
 @Entity
 @Getter
-@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ToMe extends Board {
 	private String tel;
@@ -17,5 +16,15 @@ public class ToMe extends Board {
 	public ToMe(String title, String content, String tel) {
 		super(title, content);
 		this.tel = tel;
+	}
+
+	@Override
+	public String toString() {
+		return "Project{" +
+				"id='" + super.getId() + '\'' +
+				"title='" + super.getTitle() + '\'' +
+				"content='" + super.getContent() + '\'' +
+				"tel='" + tel +
+				'}';
 	}
 }
