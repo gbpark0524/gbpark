@@ -1,0 +1,32 @@
+$breakpoints: (
+  's':  ( min-width:  767px ),
+  'm': ( min-width:  992px ),
+  'l':  ( min-width: 1200px )
+) !default;
+
+$displays: (
+  block, none
+) !default;
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@each $key, $value in $breakpoints {
+  @each $dis in $displays {
+    .dis-#{$key}-#{$dis} {
+      @include respond-to('s') {
+        display: $dis !important;
+      }
+    }
+  }
+}

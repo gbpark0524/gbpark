@@ -8,10 +8,10 @@ window.onload = (event) => {
 document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
     document.getElementById('tome_title').focus();
 });
-const toMeModal = new bootstrap.Modal(document.getElementById('toMeModal'));
-
-const toastEmpty = document.querySelector('.toast');
-const alertEmpty = new bootstrap.Toast(toastEmpty);
+// const toMeModal = new bootstrap.Modal(document.getElementById('toMeModal'));
+//
+// const toastEmpty = document.querySelector('.toast');
+// const alertEmpty = new bootstrap.Toast(toastEmpty);
 
 function sendMsg() {
     // title
