@@ -18,13 +18,7 @@ class ProjectRepositoryTest {
 
 	@Test
 	void projectTest() {
-		Project project = new Project("TEST", "https://github.com/gbpark0524", "blue", "it's test");
-		repository.save(project);
 
-		List<Project> list = repository.findAll();
-		String title = list.get(0).getTitle();
-
-		assertThat(title).isEqualTo("TEST");
 	}
 
 }
