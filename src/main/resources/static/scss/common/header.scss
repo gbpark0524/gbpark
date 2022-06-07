@@ -23,7 +23,7 @@
 }
 
 .gnb {
-  display: flex;
+  display: none;
   justify-content: space-around;
 
   ul {
@@ -37,59 +37,59 @@
     border-radius: 0 0 20px 20px;
     background-color: white;
     width: 50%;
+  }
 
-    li {
-      color: $color1;
-      position: relative;
-      margin: 0;
-      height: 38px;
-      line-height: 38px;
+  li {
+    color: $color1;
+    position: relative;
+    margin: 0;
+    height: 38px;
+    line-height: 38px;
 
-      &::before {
-        @include twist-before(2px, 100%, 50%, 100%, 1, 0);
-        top: 0;
-        left: 0;
-      }
-
-      &::after {
-        @include twist-before(2px, 100%, 50%, 0%, 1, 0);
-        top: 0;
-        right: 0;
-      }
-
-      a {
-        -webkit-transition: color 0.4s;
-        transition: color 0.4s;
-        padding: 10px;
-        position: relative;
-
-        &:hover, &:focus {
-          color: $color4;
-        }
-
-        &::before {
-          @include twist-before(100%, 2px, 0%, 50%, 0, 1);
-          top: 0;
-          left: 0;
-        }
-
-        &::after {
-          @include twist-before(100%, 2px, 100%, 50%, 0, 1);
-          bottom: 0;
-          left: 0;
-        }
-      }
+    &::before {
+      @include twist-before(2px, 100%, 50%, 100%, 1, 0);
+      top: 0;
+      left: 0;
     }
 
-    .current {
+    &::after {
+      @include twist-before(2px, 100%, 50%, 0%, 1, 0);
+      top: 0;
+      right: 0;
+    }
+  }
+
+  a {
+    -webkit-transition: color 0.4s;
+    transition: color 0.4s;
+    padding: 10px;
+    position: relative;
+
+    &:hover, &:focus {
+      color: $color4;
+    }
+
+    &::before {
+      @include twist-before(100%, 2px, 0%, 50%, 0, 1);
+      top: 0;
+      left: 0;
+    }
+
+    &::after {
+      @include twist-before(100%, 2px, 100%, 50%, 0, 1);
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  .current {
+    &::before, &::after {
+      @include twist-after;
+    }
+
+    a {
       &::before, &::after {
         @include twist-after;
-      }
-
-      a {
-        &::before, &::after {
-          @include twist-after;
-        }
       }
     }
   }
@@ -98,4 +98,11 @@
 .sub-nav {
   height: 53px;
   background-color: $color1;
+  width: 100%;
+  display: flex;
+
+  .three-bars {
+    fill: $color5;
+    height: 38px;
+  }
 }
