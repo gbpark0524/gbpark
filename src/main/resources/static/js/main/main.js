@@ -5,9 +5,9 @@ window.onload = (event) => {
 /*
 * modal event
 */
-document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
+/*document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
 	document.getElementById('tome_title').focus();
-});
+});*/
 // const toMeModal = new bootstrap.Modal(document.getElementById('toMeModal'));
 //
 // const toastEmpty = document.querySelector('.toast');

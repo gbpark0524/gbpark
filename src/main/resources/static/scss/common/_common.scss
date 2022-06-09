@@ -1,15 +1,21 @@
 @charset "utf-8";
 @import 'reactive';
 
-$color1: #2C3540;
-$color3: #455D73;
-$color2: #5D84A6;
-$color4: #93AEBF;
-$color5: #DCEAF2;
+$G-color1: #2C3540;
+$G-color2: #455D73;
+$G-color3: #5D84A6;
+$G-color4: #93AEBF;
+$G-color5: #DCEAF2;
+$G-white: white;
 
-$primary: #455D73;
-$secondary: #5D84A6;
-$link-decoration: 'none';
+$G-color-arr: (
+  'c1': ($G-color1),
+  'c2': ($G-color2),
+  'c3': ($G-color3),
+  'c4': ($G-color4),
+  'c5': ($G-color5),
+  'w': ($G-white)
+);
 
 @font-face {
   font-family: 'BMJUA';
@@ -36,6 +42,42 @@ li {
 }
 
 a {
-  color : $color1;
+  color : $G-color1;
   text-decoration: none;
+}
+
+// button
+@each $key-text, $value-text in $G-color-arr {
+  @each $key-back, $value-back in $G-color-arr {
+    @each $key-hover, $value-hover in $G-color-arr {
+      .btn-#{$key-text}-#{$key-back}-#{$key-hover} {
+        color: #{$value-text};
+        background-color: #{$value-back};
+        border: 1px solid #{$value-text};
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: #{$value-hover};
+        }
+      }
+    }
+  }
+}
+
+
+.shade-modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }

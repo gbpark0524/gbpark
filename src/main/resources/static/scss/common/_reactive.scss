@@ -1,31 +1,31 @@
-$breakpoints: (
+$G-breakpoints: (
   's':  ( min-width:  767px ),
   'm': ( min-width:  992px ),
   'l':  ( min-width: 1200px )
   /*'us':  ( max-width:  767px ),
   'um': ( max-width:  992px ),
   'ul':  ( max-width: 1200px )*/
-) !default;
+);
 
-$displays: (
+$G-displays: (
   block, none, flex
-) !default;
+);
 
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+  @if map-has-key($G-breakpoints, $breakpoint) {
+    @media #{inspect(map-get($G-breakpoints, $breakpoint))} {
       @content;
     }
   }
 
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+        + "Available breakpoints are: #{map-keys($G-breakpoints)}.";
   }
 }
 
-@each $key, $value in $breakpoints {
-  @each $dis in $displays {
+@each $key, $value in $G-breakpoints {
+  @each $dis in $G-displays {
     .dis-#{$key}-#{$dis} {
       @include respond-to(#{$key}) {
         display: $dis !important;
