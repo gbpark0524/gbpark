@@ -5,12 +5,12 @@ window.onload = (event) => {
 /*
 * modal event
 */
-/*document.getElementById('toMeModal').addEventListener('shown.bs.modal', function () {
-	document.getElementById('tome_title').focus();
+/*document.getElementById("toMeModal").addEventListener("shown.bs.modal", function () {
+	document.getElementById("tome_title").focus();
 });*/
-// const toMeModal = new bootstrap.Modal(document.getElementById('toMeModal'));
+// const toMeModal = new bootstrap.Modal(document.getElementById("toMeModal"));
 //
-// const toastEmpty = document.querySelector('.toast');
+// const toastEmpty = document.querySelector(".toast");
 // const alertEmpty = new bootstrap.Toast(toastEmpty);
 
 function sendMsg() {
@@ -25,20 +25,18 @@ function sendMsg() {
 * notion
  */
 function getNotionList(pageSize) {
-	const loading = document.getElementById('loading-notion');
-	loading.removeAttribute('hidden');
 	const requestOptions = {
-		method: 'GET',
-		redirect: 'follow'
+		method: "GET",
+		redirect: "follow"
 	};
 
 	fetch("/notion?pageSize=" + pageSize, requestOptions)
 		.then(response => response.json())
 		.then(json => {
-			loading.setAttribute('hidden', '');
+			setDisplay("loadingNotion","none")
 			displayNotionList(json.results);
 		})
-		.catch(error => console.log('error', error));
+		.catch(error => console.log("error", error));
 }
 
 function displayNotionList(results) {
@@ -47,9 +45,9 @@ function displayNotionList(results) {
 		notionList.removeChild(notionList.firstChild);
 	}
 	for (const result of results) {
-		const list = document.createElement('li');
+		const list = document.createElement("li");
 		list.className = "child-notion";
-		const link = document.createElement('a');
+		const link = document.createElement("a");
 		link.setAttribute("href", result.url);
 		const title = result.properties.title.title[0].plain_text;
 		link.innerText = title.replace("- log", "") + " : " + result.last_edited_time.substring(0, 10);
@@ -73,9 +71,9 @@ function toMeSave(title, tel, message) {
     formdata.append("tel", tel);
 
 	const requestOptions = {
-		method: 'POST',
+		method: "POST",
 		body: formdata,
-		redirect: 'follow'
+		redirect: "follow"
 	};
 
 	fetch("/tome", requestOptions)

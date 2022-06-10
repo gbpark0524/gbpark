@@ -35,3 +35,13 @@ function checkIE() {
     return (msie > 0 || trident > 0);
 }
 
+function setDisplay(selector, display) {
+    if (selector.indexOf(".") !== 0 && selector.indexOf("#") !== 0) {
+        const sel = selector.includes("-") ? "." : "#";
+        selector = sel + selector;
+    }
+    const nodes = document.querySelectorAll(selector);
+    Array.prototype.forEach.call(nodes, function(e){
+        e.style.display = display;
+    });
+}

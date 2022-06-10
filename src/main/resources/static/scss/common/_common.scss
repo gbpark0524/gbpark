@@ -48,8 +48,8 @@ a {
 
 .container {
   max-width: 100%;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-right: 1rem;
+  padding-left: 1rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -90,9 +90,9 @@ a {
 }
 
 .line {
-  height: 0.25em;
+  height: .25rem;
   padding: 0;
-  margin: 24px 0;
+  margin: 1.25rem 0;
   background-color: $G-color1;
   border: 0;
 }
