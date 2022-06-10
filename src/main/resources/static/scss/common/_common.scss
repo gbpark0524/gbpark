@@ -46,6 +46,14 @@ a {
   text-decoration: none;
 }
 
+.container {
+  max-width: 100%;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 // button
 @each $key-text, $value-text in $G-color-arr {
   @each $key-back, $value-back in $G-color-arr {
@@ -70,7 +78,6 @@ a {
   }
 }
 
-
 .shade-modal {
   display: none;
   position: absolute;
@@ -80,4 +87,12 @@ a {
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
   z-index: 10;
+}
+
+.line {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: $G-color1;
+  border: 0;
 }
