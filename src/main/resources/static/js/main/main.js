@@ -50,7 +50,7 @@ function displayNotionList(results) {
 		const link = document.createElement("a");
 		link.setAttribute("href", result.url);
 		const title = result.properties.title.title[0].plain_text;
-		link.innerText = title.replace("- log", "") + " : " + result.last_edited_time.substring(0, 10);
+		link.innerText = title.replace("- log", "")/* + " : " + result.last_edited_time.substring(0, 10)*/;
 		notionList.appendChild(list);
 		list.appendChild(link);
 	}

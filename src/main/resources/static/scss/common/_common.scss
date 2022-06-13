@@ -1,20 +1,21 @@
 @charset "utf-8";
 @import 'reactive';
 
-$G-color1: #2C3540;
-$G-color2: #455D73;
-$G-color3: #5D84A6;
-$G-color4: #93AEBF;
-$G-color5: #DCEAF2;
-$G-white: white;
+$G-color-b1: #2C3540;
+$G-color-b2: #455D73;
+$G-color-b3: #5D84A6;
+$G-color-b4: #93AEBF;
+$G-color-w1: #DCEAF2;
+$G-color-w2: #fbfbfd;
 
 $G-color-arr: (
-  'c1': ($G-color1),
-  'c2': ($G-color2),
-  'c3': ($G-color3),
-  'c4': ($G-color4),
-  'c5': ($G-color5),
-  'w': ($G-white)
+  'b1': ($G-color-b1),
+  'b2': ($G-color-b2),
+  'b3': ($G-color-b3),
+  'b4': ($G-color-b4),
+  'w1': ($G-color-w1),
+  'w2': ($G-color-w2),
+  'w': white
 );
 
 @font-face {
@@ -42,7 +43,7 @@ li {
 }
 
 a {
-  color : $G-color1;
+  color : $G-color-b1;
   text-decoration: none;
 }
 
@@ -52,6 +53,18 @@ a {
   padding-left: 1rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+// border
+@each $key, $value in $G-color-arr {
+  @each $key-back, $value-back in $G-color-arr {
+    .bor-#{$key}-#{$key-back} {
+      border: 1px solid $value;
+      border-radius: 0.5rem;
+      background: #{$value-back};
+      padding: 1rem;
+    }
+  }
 }
 
 // button
@@ -94,7 +107,7 @@ a {
   height: .25rem;
   padding: 0;
   margin: 1.25rem 0;
-  background-color: $G-color1;
+  background-color: $G-color-b1;
   border: 0;
 }
 
