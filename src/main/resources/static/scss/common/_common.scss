@@ -1,5 +1,11 @@
 @charset "utf-8";
-@import 'reactive';
+
+@font-face {
+  font-family: 'BMJUA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 $G-color-b1: #2C3540;
 $G-color-b2: #455D73;
@@ -18,12 +24,77 @@ $G-color-arr: (
   'w': white
 );
 
-@font-face {
-  font-family: 'BMJUA';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+$G-breakpoints: (
+  's':  ( min-width:  767px ),
+  'm': ( min-width:  992px ),
+  'l':  ( min-width: 1200px )
+  /*'us':  ( max-width:  767px ),
+  'um': ( max-width:  992px ),
+  'ul':  ( max-width: 1200px )*/
+);
+
+$G-displays: (
+  block, none, flex
+);
+
+// flex
+$G-flex-direction: (
+  '-r':  (row),
+  '-c':  (column),
+  '-rr': (row-reverse),
+  '-cr': (column-reverse),
+  '':    (row)
+);
+
+$G-flex-justify-content: (
+  '-cs':  (flex-start),
+  '-ce':  (flex-end),
+  '-cc':  (center),
+  '-cb':  (space-between),
+  '-ca':  (space-around),
+  '-cv':  (space-evenly),
+  '': (flex-start)
+);
+
+$G-flex-items: (
+  '-ic':  (center),
+  '-is':  (flex-start),
+  '-ie':  (flex-end),
+  '-it':  (stratch),
+  '-ib':  (baseline),
+  '':  (stratch)
+);
+
+$G-flex-wrap: (
+  '-wr':  (wrap),
+  '': (nowrap)
+);
+
+$G-flex-align-content: (
+  '-cs':  (flex-start),
+  '-ce':  (flex-end),
+  '-cc':  (center),
+  '-cb':  (space-between),
+  '-ca':  (space-around),
+  '-cv':  (space-evenly),
+  '': (flex-start)
+);
+// flex end
+
+// reactive
+@mixin respond-to($breakpoint) {
+  @if map-has-key($G-breakpoints, $breakpoint) {
+    @media #{inspect(map-get($G-breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($G-breakpoints)}.";
+  }
 }
+// reactive end
 
 * {
   font-family: BMJUA, monospace;
@@ -115,4 +186,63 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@each $dis in $G-displays {
+  .dis-#{$dis} {
+    display: $dis;
+  }
+}
+
+@each $key, $value in $G-breakpoints {
+  @each $dis in $G-displays {
+    .#{$key}-dis-#{$dis} {
+      @include respond-to(#{$key}) {
+        display: $dis !important;
+      }
+    }
+  }
+}
+
+
+@each $key-al-con, $value-al-con in $G-flex-align-content {
+  @each $key-wrap, $value-wrap in $G-flex-wrap {
+    @each $key-item, $value-item in $G-flex-items {
+      @each $key-con, $value-con in $G-flex-justify-content {
+        @each $key-dir, $value-dir in $G-flex-direction {
+          .fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
+            display: flex;
+            flex-direction:#{$value-dir};
+            justify-content:#{$value-con};
+            align-items: #{$value-item};
+            flex-wrap: #{$value-wrap};
+            align-content: #{$value-al-con};
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $key, $value in $G-breakpoints {
+  @each $key-al-con, $value-al-con in $G-flex-align-content {
+    @each $key-wrap, $value-wrap in $G-flex-wrap {
+      @each $key-item, $value-item in $G-flex-items {
+        @each $key-con, $value-con in $G-flex-justify-content {
+          @each $key-dir, $value-dir in $G-flex-direction {
+            .#{$key}-fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
+              @include respond-to(#{$key}) {
+                display: flex !important;
+                flex-direction: #{$value-dir} !important;
+                justify-content: #{$value-con} !important;
+                align-items: #{$value-item} !important;
+                flex-wrap: #{$value-wrap} !important;
+                align-content: #{$value-al-con} !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
