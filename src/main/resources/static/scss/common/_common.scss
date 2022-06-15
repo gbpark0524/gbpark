@@ -7,6 +7,10 @@
   font-style: normal;
 }
 
+$G-numbers-12: (
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+);
+
 $G-color-b1: #2C3540;
 $G-color-b2: #455D73;
 $G-color-b3: #5D84A6;
@@ -81,25 +85,11 @@ $G-flex-align-content: (
 );
 // flex end
 
-// reactive
-@mixin respond-to($breakpoint) {
-  @if map-has-key($G-breakpoints, $breakpoint) {
-    @media #{inspect(map-get($G-breakpoints, $breakpoint))} {
-      @content;
-    }
-  }
-
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($G-breakpoints)}.";
-  }
-}
-// reactive end
-
 * {
   font-family: BMJUA, monospace;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 button {
@@ -194,17 +184,6 @@ a {
   }
 }
 
-@each $key, $value in $G-breakpoints {
-  @each $dis in $G-displays {
-    .#{$key}-dis-#{$dis} {
-      @include respond-to(#{$key}) {
-        display: $dis !important;
-      }
-    }
-  }
-}
-
-
 @each $key-al-con, $value-al-con in $G-flex-align-content {
   @each $key-wrap, $value-wrap in $G-flex-wrap {
     @each $key-item, $value-item in $G-flex-items {
@@ -224,7 +203,34 @@ a {
   }
 }
 
+@each $value in $G-numbers-12 {
+  .fli-#{$value} { flex: $value;}
+}
+
+
+// reactive
+@mixin respond-to($breakpoint) {
+  @if map-has-key($G-breakpoints, $breakpoint) {
+    @media #{inspect(map-get($G-breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($G-breakpoints)}.";
+  }
+}
+
 @each $key, $value in $G-breakpoints {
+  @each $dis in $G-displays {
+    .#{$key}-dis-#{$dis} {
+      @include respond-to(#{$key}) {
+        display: $dis !important;
+      }
+    }
+  }
+
   @each $key-al-con, $value-al-con in $G-flex-align-content {
     @each $key-wrap, $value-wrap in $G-flex-wrap {
       @each $key-item, $value-item in $G-flex-items {
@@ -245,4 +251,11 @@ a {
       }
     }
   }
+
+  @each $value in $G-numbers-12 {
+    .#{$key}-fli-#{$value} { flex: $value;}
+  }
+
 }
+
+// reactive end
