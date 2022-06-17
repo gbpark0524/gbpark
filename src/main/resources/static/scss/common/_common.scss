@@ -41,6 +41,12 @@ $G-displays: (
   block, none, flex
 );
 
+// padding, margin
+$G-numbers-quarter: (
+  'q3': (0.75), 'q2': (0.5), 'q1': (0.25)
+);
+// padding, margin end
+
 // flex
 $G-flex-direction: (
   '-r':  (row),
@@ -200,6 +206,29 @@ a {
 
 @each $value in $G-numbers-12 {
   .fli-#{$value} { flex: $value;}
+}
+
+@mixin margin-bottom($tag-name, $number) {
+  .mx-#{$tag-name} {margin: #{$number}rem 0;}
+  .px-#{$tag-name} {padding: #{$number}rem 0;}
+  .my-#{$tag-name} {margin: 0 #{$number}rem;}
+  .py-#{$tag-name} {padding: 0 #{$number}rem;}
+  .mr-#{$tag-name} {margin-right: #{$number}rem;}
+  .ml-#{$tag-name} {margin-left: #{$number}rem;}
+  .mt-#{$tag-name} {margin-top: #{$number}rem;}
+  .mb-#{$tag-name} {margin-bottom: #{$number}rem;}
+  .pr-#{$tag-name} {padding-right: #{$number}rem;}
+  .pl-#{$tag-name} {padding-left: #{$number}rem;}
+  .pt-#{$tag-name} {padding-top: #{$number}rem;}
+  .pb-#{$tag-name} {padding-bottom: #{$number}rem;}
+}
+
+@each $key,$value in $G-numbers-quarter {
+  @include margin-bottom($key, $value)
+}
+
+@each $key,$value in $G-numbers-12 {
+  @include margin-bottom($key, $value)
 }
 
 
