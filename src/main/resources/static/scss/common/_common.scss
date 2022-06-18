@@ -25,21 +25,18 @@ $G-color-arr: (
   'b4': ($G-color-b4),
   'w1': ($G-color-w1),
   'w2': ($G-color-w2),
-  'w': white
+  'w0': white
 );
 
 $G-breakpoints: (
   's':  ( min-width:  767px ),
   'm': ( min-width:  992px ),
   'l':  ( min-width: 1200px )
-  /*'us':  ( max-width:  767px ),
-  'um': ( max-width:  992px ),
-  'ul':  ( max-width: 1200px )*/
 );
 
-$G-displays: (
-  block, none, flex
-);
+$G-displays: (block, none, flex);
+
+$G-positions: (absolute, fixed, relative, sticky, static);
 
 // padding, margin
 $G-numbers-quarter: (
@@ -98,11 +95,25 @@ $G-flex-align-content: (
   box-sizing: border-box;
 }
 
-button {
-  box-sizing: border-box;
-  border: 0 none;
+@mixin btn-style() {
+  font-weight: 400;
   text-align: center;
-  background-color: transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  line-height: 1.25rem;
+  border-radius: 4px;
+}
+
+.btn {
+  @include btn-style();
+  @each $key, $value in $G-color-arr {
+    &-#{$key} {
+      @include btn-style();
+      border: 1px solid $value;
+    }
+  }
 }
 
 li {
@@ -112,6 +123,7 @@ li {
 a {
   color : $G-color-b1;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .container {
@@ -120,6 +132,14 @@ a {
   padding-left: 1rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+@each $key, $value in $G-color-arr {
+  .cl-#{$key} {color: $value;}
+  .bg-#{$key} {background-color: $value;}
+  .hov-bor-#{$key}:hover{border-color: $value}
+  .hov-cl-#{$key}:hover{color: $value}
+  .hov-bg-#{$key}:hover{background-color: $value}
 }
 
 // border
@@ -131,31 +151,6 @@ a {
       background: #{$value-back};
       padding: 1rem;
       margin: 1rem;
-    }
-  }
-}
-
-// button
-@each $key-text, $value-text in $G-color-arr {
-  @each $key-back, $value-back in $G-color-arr {
-    @each $key-hover, $value-hover in $G-color-arr {
-      .btn-#{$key-text}-#{$key-back}-#{$key-hover} {
-        color: #{$value-text};
-        background-color: #{$value-back};
-        border: 1px solid #{$value-text};
-        font-weight: 400;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
-        padding: 0.25rem 1rem;
-        line-height: 1.25rem;
-        border-radius: 4px;
-
-        &:hover {
-          background-color: #{$value-hover};
-        }
-      }
     }
   }
 }
@@ -208,11 +203,17 @@ a {
   .fli-#{$value} { flex: $value;}
 }
 
-@mixin margin-bottom($tag-name, $number) {
-  .mx-#{$tag-name} {margin: #{$number}rem 0;}
-  .px-#{$tag-name} {padding: #{$number}rem 0;}
-  .my-#{$tag-name} {margin: 0 #{$number}rem;}
-  .py-#{$tag-name} {padding: 0 #{$number}rem;}
+@each $value in $G-positions {
+  .pos-#{$value} { position: $value;}
+}
+
+@mixin positioning($tag-name, $number) {
+  .ma-#{$tag-name} {margin: #{$number}rem;}
+  .mx-#{$tag-name} {margin: 0 #{$number}rem;}
+  .my-#{$tag-name} {margin: #{$number}rem 0;}
+  .pa-#{$tag-name} {padding: #{$number}rem;}
+  .px-#{$tag-name} {padding: 0 #{$number}rem;}
+  .py-#{$tag-name} {padding: #{$number}rem 0;}
   .mr-#{$tag-name} {margin-right: #{$number}rem;}
   .ml-#{$tag-name} {margin-left: #{$number}rem;}
   .mt-#{$tag-name} {margin-top: #{$number}rem;}
@@ -221,17 +222,25 @@ a {
   .pl-#{$tag-name} {padding-left: #{$number}rem;}
   .pt-#{$tag-name} {padding-top: #{$number}rem;}
   .pb-#{$tag-name} {padding-bottom: #{$number}rem;}
+  .er-#{$tag-name} {right: #{$number}rem;}
+  .el-#{$tag-name} {left: #{$number}rem;}
+  .et-#{$tag-name} {top: #{$number}rem;}
+  .eb-#{$tag-name} {bottom: #{$number}rem;}
+  .eh-#{$tag-name} {height: #{$number}rem;}
+  .ew-#{$tag-name} {width: #{$number}rem;}
 }
 
 @each $key,$value in $G-numbers-quarter {
-  @include margin-bottom($key, $value)
+  @include positioning($key, $value)
 }
 
-@each $key,$value in $G-numbers-12 {
-  @include margin-bottom($key, $value)
+@each $value in $G-numbers-12 {
+  @include positioning($value, $value)
 }
 
-
+@each $value in $G-numbers-12 {
+  .z-index-#{$value} {z-index: $value}
+}
 // reactive
 @mixin respond-to($breakpoint) {
   @if map-has-key($G-breakpoints, $breakpoint) {
@@ -246,10 +255,26 @@ a {
   }
 }
 
-@each $key, $value in $G-breakpoints {
+@each $key-break, $value-break in $G-breakpoints {
+  @each $value in $G-numbers-12 {
+    .#{$key-break}-z-index-#{$value} {
+      @include respond-to(#{$key-break}) {
+        z-index: $value
+      }
+    }
+  }
+
+  @each $value in $G-positions {
+    .#{$key-break}-pos-#{$value} {
+      @include respond-to(#{$key-break}) {
+        position: $value !important;
+      }
+    }
+  }
+
   @each $dis in $G-displays {
-    .#{$key}-dis-#{$dis} {
-      @include respond-to(#{$key}) {
+    .#{$key-break}-dis-#{$dis} {
+      @include respond-to(#{$key-break}) {
         display: $dis !important;
       }
     }
@@ -260,8 +285,8 @@ a {
       @each $key-item, $value-item in $G-flex-items {
         @each $key-con, $value-con in $G-flex-justify-content {
           @each $key-dir, $value-dir in $G-flex-direction {
-            .#{$key}-fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
-              @include respond-to(#{$key}) {
+            .#{$key-break}-fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
+              @include respond-to(#{$key-break}) {
                 display: flex !important;
                 flex-direction: #{$value-dir} !important;
                 justify-content: #{$value-con} !important;
@@ -277,7 +302,7 @@ a {
   }
 
   @each $value in $G-numbers-12 {
-    .#{$key}-fli-#{$value} { flex: $value;}
+    .#{$key-break}-fli-#{$value} { flex: $value;}
   }
 
 }
