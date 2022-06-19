@@ -135,11 +135,12 @@ a {
 }
 
 @each $key, $value in $G-color-arr {
-  .cl-#{$key} {color: $value;}
-  .bg-#{$key} {background-color: $value;}
-  .hov-bor-#{$key}:hover{border-color: $value}
-  .hov-cl-#{$key}:hover{color: $value}
-  .hov-bg-#{$key}:hover{background-color: $value}
+  .cl-#{$key} {color: $value !important;}
+  .bg-#{$key} {background-color: $value !important;}
+  .hov-bor-#{$key}:hover{border-color: $value !important;}
+  .hov-cl-#{$key}:hover{color: $value !important;}
+  .hov-bg-#{$key}:hover{background-color: $value !important;}
+  .hov-fill-#{$key}:hover{fill: $value !important;}
 }
 
 // border
