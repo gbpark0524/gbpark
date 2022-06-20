@@ -74,10 +74,42 @@
 	</div>
 </main>
 <div id="modal-to-me" class="shade-modal">
-	<form action="" class="form-modal">
-		<div>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="toMeModalLabel">To gbPark</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
-	</form>
+		<div class="modal-body">
+			<form>
+				<div class="">
+					<label for="tome_title" class="">Title:</label>
+					<input type="text" class="form-control" id="tome_title">
+				</div>
+				<div class="">
+					<label for="tome_tel" class="">Email or phone:</label>
+					<input type="text" class="form-control" id="tome_tel">
+				</div>
+				<div class="">
+					<label for="tome_message" class="">Message:</label>
+					<textarea class="" id="tome_message" style="height: 135px;"></textarea>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<div class="">
+				<div class="" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="">
+						<div class="toast-body">
+							제목과 내용 입력은 필수입니다.
+						</div>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+			<button type="button" class="btn" onclick="sendMsg()">Send message</button>
+		</div>
+	</div>
 </div>
 </body>
 </html>

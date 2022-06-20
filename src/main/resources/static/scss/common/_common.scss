@@ -123,6 +123,10 @@ $G-flex-align-content: (
   }
 }
 
+button {
+  @include btn-style();
+}
+
 li {
   list-style: none;
 }
