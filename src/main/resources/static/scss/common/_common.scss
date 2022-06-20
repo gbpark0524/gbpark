@@ -7,6 +7,13 @@
   font-style: normal;
 }
 
+@mixin full-monitor() {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
 $G-numbers-12: (
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 );
@@ -157,15 +164,20 @@ a {
 }
 
 .shade-modal {
+  @include full-monitor();
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 14;
+  justify-content: center;
+  align-items: center;
 }
+
+.cant-scroll {
+  @include full-monitor();
+  overflow: hidden;
+}
+
+
 
 .line {
   height: .25rem;

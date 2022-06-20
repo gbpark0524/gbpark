@@ -59,3 +59,19 @@ function classToggle(selector, class1, class2) {
         }
     });
 }
+
+// modal
+function initModal(modalId, btnId) {
+    const modal = document.getElementById(modalId);
+    const brnModal = document.getElementById(btnId);
+
+    brnModal.onclick = function() {
+        modal.style.display = "flex";
+        modal.parentElement.classList.add("cant-scroll");
+    }
+    modal.onclick = function () {
+        modal.style.display = "none";
+        modal.parentElement.classList.remove("cant-scroll");
+    }
+}
+// modal end
