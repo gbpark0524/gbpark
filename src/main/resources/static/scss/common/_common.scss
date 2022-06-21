@@ -7,14 +7,89 @@
   font-style: normal;
 }
 
-// mixin
-@mixin full-monitor() {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
+// global varibles
+$g-numbers-12: (
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+);
 
+$g-color-b1: #2C3540;
+$g-color-b2: #455D73;
+$g-color-b3: #5D84A6;
+$g-color-b4: #93AEBF;
+$g-color-w1: #DCEAF2;
+$g-color-w2: #fbfbfd;
+
+$g-color-arr: (
+        'b1': ($g-color-b1),
+        'b2': ($g-color-b2),
+        'b3': ($g-color-b3),
+        'b4': ($g-color-b4),
+        'w1': ($g-color-w1),
+        'w2': ($g-color-w2),
+        'w0': white
+);
+
+$g-breakpoints: (
+        's':  ( min-width:  767px ),
+        'm': ( min-width:  992px ),
+        'l':  ( min-width: 1200px )
+);
+
+$g-displays: (block, none, flex);
+
+$g-positions: (absolute, fixed, relative, sticky, static);
+
+// padding, margin
+$g-numbers-quarter: (
+        'q3': (0.75), 'q2': (0.5), 'q1': (0.25)
+);
+// padding, margin end
+
+// flex
+$g-flex-direction: (
+        '-r':  (row),
+        '-c':  (column),
+        '-rr': (row-reverse),
+        '-cr': (column-reverse),
+        '':    (row)
+);
+
+$g-flex-justify-content: (
+        '-cs':  (flex-start),
+        '-ce':  (flex-end),
+        '-cc':  (center),
+        '-cb':  (space-between),
+        '-ca':  (space-around),
+        '-cv':  (space-evenly),
+        '': (flex-start)
+);
+
+$g-flex-items: (
+        '-ic':  (center),
+        '-is':  (flex-start),
+        '-ie':  (flex-end),
+        '-it':  (stratch),
+        '-ib':  (baseline),
+        '':  (stratch)
+);
+
+$g-flex-wrap: (
+        '-wr':  (wrap),
+        '': (nowrap)
+);
+
+$g-flex-align-content: (
+        '-cs':  (flex-start),
+        '-ce':  (flex-end),
+        '-cc':  (center),
+        '-cb':  (space-between),
+        '-ca':  (space-around),
+        '-cv':  (space-evenly),
+        '': (flex-start)
+);
+// global variables end
+
+// mixin
 @mixin positioning($tag-name, $number) {
   .ma-#{$tag-name} {margin: #{$number}rem;}
   .mx-#{$tag-name} {margin: 0 #{$number}rem;}
@@ -39,27 +114,47 @@
 }
 
 @mixin respond-to($breakpoint) {
-  @if map-has-key($G-breakpoints, $breakpoint) {
-    @media #{inspect(map-get($G-breakpoints, $breakpoint))} {
+  @if map-has-key($g-breakpoints, $breakpoint) {
+    @media #{inspect(map-get($g-breakpoints, $breakpoint))} {
       @content;
     }
   }
 
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($G-breakpoints)}.";
+        + "Available breakpoints are: #{map-keys($g-breakpoints)}.";
   }
 }
+// mixin end
 
-@mixin default-btn-color() {
-  background-color: $G-color-b1;
+// extends
+%btn-color {
+  background-color: $g-color-b1;
   color: white;
   &:hover {
-    background-color: $G-color-b2;
+    background-color: $g-color-b2;
   }
 }
 
-@mixin default-input() {
+%btn {
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  line-height: 1.25rem;
+  border-radius: 4px;
+}
+
+%full {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+%input {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
@@ -74,89 +169,9 @@
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-// mixin end
+// extends end
 
-$G-numbers-12: (
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-);
-
-$G-color-b1: #2C3540;
-$G-color-b2: #455D73;
-$G-color-b3: #5D84A6;
-$G-color-b4: #93AEBF;
-$G-color-w1: #DCEAF2;
-$G-color-w2: #fbfbfd;
-
-$G-color-arr: (
-  'b1': ($G-color-b1),
-  'b2': ($G-color-b2),
-  'b3': ($G-color-b3),
-  'b4': ($G-color-b4),
-  'w1': ($G-color-w1),
-  'w2': ($G-color-w2),
-  'w0': white
-);
-
-$G-breakpoints: (
-  's':  ( min-width:  767px ),
-  'm': ( min-width:  992px ),
-  'l':  ( min-width: 1200px )
-);
-
-$G-displays: (block, none, flex);
-
-$G-positions: (absolute, fixed, relative, sticky, static);
-
-// padding, margin
-$G-numbers-quarter: (
-  'q3': (0.75), 'q2': (0.5), 'q1': (0.25)
-);
-// padding, margin end
-
-// flex
-$G-flex-direction: (
-  '-r':  (row),
-  '-c':  (column),
-  '-rr': (row-reverse),
-  '-cr': (column-reverse),
-  '':    (row)
-);
-
-$G-flex-justify-content: (
-  '-cs':  (flex-start),
-  '-ce':  (flex-end),
-  '-cc':  (center),
-  '-cb':  (space-between),
-  '-ca':  (space-around),
-  '-cv':  (space-evenly),
-  '': (flex-start)
-);
-
-$G-flex-items: (
-  '-ic':  (center),
-  '-is':  (flex-start),
-  '-ie':  (flex-end),
-  '-it':  (stratch),
-  '-ib':  (baseline),
-  '':  (stratch)
-);
-
-$G-flex-wrap: (
-  '-wr':  (wrap),
-  '': (nowrap)
-);
-
-$G-flex-align-content: (
-  '-cs':  (flex-start),
-  '-ce':  (flex-end),
-  '-cc':  (center),
-  '-cb':  (space-between),
-  '-ca':  (space-around),
-  '-cv':  (space-evenly),
-  '': (flex-start)
-);
-// flex end
-
+// tag
 * {
   font-family: BMJUA, monospace;
   padding: 0;
@@ -164,32 +179,33 @@ $G-flex-align-content: (
   box-sizing: border-box;
 }
 
-@mixin btn-style() {
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
+a {
+  color : $g-color-b1;
+  text-decoration: none;
   cursor: pointer;
-  padding: 0.25rem 1rem;
-  line-height: 1.25rem;
-  border-radius: 4px;
-}
-
-.btn {
-  @include btn-style();
-  @include default-btn-color();
-
-  @each $key, $value in $G-color-arr {
-    &-#{$key} {
-      @include btn-style();
-      border: 1px solid $value;
-    }
-  }
 }
 
 button {
-  @include btn-style();
-  @include default-btn-color();
+  @extend %btn;
+  @extend %btn-color;
+}
+
+li {
+  list-style: none;
+}
+// tag end
+
+// simple class
+.btn {
+  @extend %btn;
+  @extend %btn-color;
+
+  @each $key, $value in $g-color-arr {
+    &-#{$key} {
+      @extend %btn;
+      border: 1px solid $value;
+    }
+  }
 }
 
 .btn-close {
@@ -205,14 +221,9 @@ button {
   cursor: pointer;
 }
 
-li {
-  list-style: none;
-}
-
-a {
-  color : $G-color-b1;
-  text-decoration: none;
-  cursor: pointer;
+.cant-scroll {
+  @extend %full;
+  overflow: hidden;
 }
 
 .container {
@@ -223,30 +234,25 @@ a {
   margin-left: auto;
 }
 
-@each $key, $value in $G-color-arr {
-  .cl-#{$key} {color: $value !important;}
-  .bg-#{$key} {background-color: $value !important;}
-  .hov-bor-#{$key}:hover{border-color: $value !important;}
-  .hov-cl-#{$key}:hover{color: $value !important;}
-  .hov-bg-#{$key}:hover{background-color: $value !important;}
-  .hov-fill-#{$key}:hover{fill: $value !important;}
+.input-text {
+  @extend %input;
 }
 
-// border
-@each $key, $value in $G-color-arr {
-  @each $key-back, $value-back in $G-color-arr {
-    .bor-#{$key}-#{$key-back} {
-      border: 1px solid $value;
-      border-radius: 0.5rem;
-      background: #{$value-back};
-      padding: 1rem;
-      margin: 1rem;
-    }
-  }
+.input-textarea {
+  @extend %input;
+  min-height : calc(1.5em + (0.75rem + 2px));
+}
+
+.line {
+  height: .25rem;
+  padding: 0;
+  background-color: $g-color-b1;
+  border: 0;
+  margin: 1rem 0;
 }
 
 .shade-modal {
-  @include full-monitor();
+  @extend %full;
   display: none;
   background: rgba(0, 0, 0, 0.4);
   z-index: 14;
@@ -259,33 +265,20 @@ a {
     align-items: center;
   }
 }
+// simple class end
 
-.cant-scroll {
-  @include full-monitor();
-  overflow: hidden;
-}
-
-
-
-.line {
-  height: .25rem;
-  padding: 0;
-  background-color: $G-color-b1;
-  border: 0;
-  margin: 1rem 0;
-}
-
-@each $dis in $G-displays {
+// each class
+@each $dis in $g-displays {
   .dis-#{$dis} {
     display: $dis;
   }
 }
 
-@each $key-al-con, $value-al-con in $G-flex-align-content {
-  @each $key-wrap, $value-wrap in $G-flex-wrap {
-    @each $key-item, $value-item in $G-flex-items {
-      @each $key-con, $value-con in $G-flex-justify-content {
-        @each $key-dir, $value-dir in $G-flex-direction {
+@each $key-al-con, $value-al-con in $g-flex-align-content {
+  @each $key-wrap, $value-wrap in $g-flex-wrap {
+    @each $key-item, $value-item in $g-flex-items {
+      @each $key-con, $value-con in $g-flex-justify-content {
+        @each $key-dir, $value-dir in $g-flex-direction {
           .fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
             display: flex;
             flex-direction:#{$value-dir};
@@ -300,39 +293,51 @@ a {
   }
 }
 
-@each $value in $G-numbers-12 {
+@each $key, $value in $g-color-arr {
+  .cl-#{$key} {color: $value !important;}
+  .bg-#{$key} {background-color: $value !important;}
+  .hov-bor-#{$key}:hover{border-color: $value !important;}
+  .hov-cl-#{$key}:hover{color: $value !important;}
+  .hov-bg-#{$key}:hover{background-color: $value !important;}
+  .hov-fill-#{$key}:hover{fill: $value !important;}
+}
+
+@each $key, $value in $g-color-arr {
+  @each $key-back, $value-back in $g-color-arr {
+    .bor-#{$key}-#{$key-back} {
+      border: 1px solid $value;
+      border-radius: 0.5rem;
+      background: #{$value-back};
+      padding: 1rem;
+      margin: 1rem;
+    }
+  }
+}
+
+@each $value in $g-numbers-12 {
   .fli-#{$value} { flex: $value;}
 }
 
-@each $value in $G-positions {
+@each $value in $g-positions {
   .pos-#{$value} { position: $value;}
 }
 
-.input-text {
-  @include default-input;
-}
-
-.input-textarea {
-  @include default-input;
-  min-height : calc(1.5em + (0.75rem + 2px));
-}
-
-@each $key,$value in $G-numbers-quarter {
+@each $key,$value in $g-numbers-quarter {
   @include positioning($key, $value)
 }
 
-@each $value in $G-numbers-12 {
+@each $value in $g-numbers-12 {
   @include positioning($value, $value)
 }
 
-@each $value in $G-numbers-12 {
+@each $value in $g-numbers-12 {
   .z-index-#{$value} {z-index: $value}
 }
-// reactive
+// each class end
 
-
-@each $key-break, $value-break in $G-breakpoints {
-  @each $value in $G-numbers-12 {
+// media
+@each $key-break, $value-break in $g-breakpoints {
+  @each $value in $g-numbers-12 {
     .#{$key-break}-z-index-#{$value} {
       @include respond-to(#{$key-break}) {
         z-index: $value
@@ -340,7 +345,7 @@ a {
     }
   }
 
-  @each $value in $G-positions {
+  @each $value in $g-positions {
     .#{$key-break}-pos-#{$value} {
       @include respond-to(#{$key-break}) {
         position: $value !important;
@@ -348,7 +353,7 @@ a {
     }
   }
 
-  @each $dis in $G-displays {
+  @each $dis in $g-displays {
     .#{$key-break}-dis-#{$dis} {
       @include respond-to(#{$key-break}) {
         display: $dis !important;
@@ -356,11 +361,11 @@ a {
     }
   }
 
-  @each $key-al-con, $value-al-con in $G-flex-align-content {
-    @each $key-wrap, $value-wrap in $G-flex-wrap {
-      @each $key-item, $value-item in $G-flex-items {
-        @each $key-con, $value-con in $G-flex-justify-content {
-          @each $key-dir, $value-dir in $G-flex-direction {
+  @each $key-al-con, $value-al-con in $g-flex-align-content {
+    @each $key-wrap, $value-wrap in $g-flex-wrap {
+      @each $key-item, $value-item in $g-flex-items {
+        @each $key-con, $value-con in $g-flex-justify-content {
+          @each $key-dir, $value-dir in $g-flex-direction {
             .#{$key-break}-fl#{$key-dir}#{$key-con}#{$key-item}#{$key-wrap}#{$key-al-con} {
               @include respond-to(#{$key-break}) {
                 display: flex !important;
@@ -377,10 +382,9 @@ a {
     }
   }
 
-  @each $value in $G-numbers-12 {
+  @each $value in $g-numbers-12 {
     .#{$key-break}-fli-#{$value} { flex: $value;}
   }
 
 }
-
-// reactive end
+// media end

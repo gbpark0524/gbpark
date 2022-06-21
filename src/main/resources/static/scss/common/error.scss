@@ -8,12 +8,12 @@
 body {
   display: flex;
   align-items: center;
-  background: $G-color-b1;
+  background: $g-color-b1;
   min-width: 275px;
   height: 100vh;
   margin: 0 10vw;
   overflow: hidden;
-  color: $G-color-w1;
+  color: $g-color-w1;
 }
 
 .wrapper {
@@ -43,7 +43,7 @@ p {
 span {
   display: block;
   text-transform: uppercase;
-  color: $G-color-b2;
+  color: $g-color-b2;
   letter-spacing: 1.5px;
   text-align: center;
 }
@@ -52,8 +52,8 @@ a {
   padding: .8em 1em;
   margin-right: 1em;
   margin-bottom: 1em;
-  border: 3px solid $G-color-b2;
-  color: $G-color-w1;
+  border: 3px solid $g-color-b2;
+  color: $g-color-w1;
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
@@ -62,14 +62,14 @@ a {
   overflow: hidden;
   transition: .3s;
   &:hover {
-    color: $G-color-b3;
+    color: $g-color-b3;
     &:before {
       top: 0;
     }
   }
   &:before {
     content: '';
-    background: $G-color-w1;
+    background: $g-color-w1;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -98,7 +98,7 @@ $border: math.div($size,15);
 }
 
 .blackhole {
-  border: $border solid $G-color-b2;
+  border: $border solid $g-color-b2;
   height: $size;
   width: $size;
   border-radius: 50%;
@@ -109,7 +109,7 @@ $border: math.div($size,15);
     content: '';
     height: calc(100% + #{$border*2});
     width: calc(100% + #{$border*2});
-    border: $border solid $G-color-b2;
+    border: $border solid $g-color-b2;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-radius: 50%;

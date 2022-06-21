@@ -3,7 +3,7 @@
 @mixin twist-before($width, $height, $origin1, $origin2, $scale1, $scale2) {
   content: '';
   position: absolute;
-  background: $G-color-b4;
+  background: $g-color-b4;
   width: $width;
   height: $height;
   @each $browser in -moz-, -o-, -webkit-, '' {
@@ -33,14 +33,14 @@
     justify-content: space-around;
     align-items: center;
     height: 50px;
-    border: 3px solid $G-color-b1;
+    border: 3px solid $g-color-b1;
     border-radius: 0 0 20px 20px;
     background-color: white;
     width: 50%;
   }
 
   li {
-    color: $G-color-b1;
+    color: $g-color-b1;
     position: relative;
     margin: 0;
     height: 38px;
@@ -66,7 +66,7 @@
     position: relative;
 
     &:hover, &:focus {
-      color: $G-color-b4;
+      color: $g-color-b4;
     }
 
     &::before {
@@ -96,10 +96,10 @@
 }
 
 .sub-nav {
-  background-color: $G-color-b1;
+  background-color: $g-color-b1;
 
   .three-bars {
-    fill: $G-color-w1;
+    fill: $g-color-w1;
     height: 2rem;
   }
 }
