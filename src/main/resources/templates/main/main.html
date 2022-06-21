@@ -74,28 +74,23 @@
 	</div>
 </main>
 <div id="modal-to-me" class="shade-modal">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="toMeModalLabel">To gbPark</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	<div class="modal-content bor-b1-w2 fl-c-it">
+		<div class="modal-header fl-r-cb-ic pb-q2">
+			<h3 class="modal-title" id="toMeModalLabel">To gbPark</h3>
+			<div class="btn-close" data-bs-dismiss="modal" aria-label="Close"></div>
 		</div>
+		<hr class="line">
 		<div class="modal-body">
-			<form>
-				<div class="">
-					<label for="tome_title" class="">Title:</label>
-					<input type="text" class="form-control" id="tome_title">
-				</div>
-				<div class="">
-					<label for="tome_tel" class="">Email or phone:</label>
-					<input type="text" class="form-control" id="tome_tel">
-				</div>
-				<div class="">
-					<label for="tome_message" class="">Message:</label>
-					<textarea class="" id="tome_message" style="height: 135px;"></textarea>
-				</div>
+			<form class="fl-c-cc-it">
+				<label for="tome_title" class="my-q2">Title:</label>
+				<input type="text" class="input-text my-q2" id="tome_title">
+				<label for="tome_tel" class="my-q2">Email or phone:</label>
+				<input type="text" class="input-text my-q2" id="tome_tel">
+				<label for="tome_message" class="my-q2">Message:</label>
+				<textarea class="input-textarea" id="tome_message" style="height: 135px;"></textarea>
 			</form>
 		</div>
-		<div class="modal-footer">
+		<div class="modal-footer fl-r-cc-ic">
 			<div class="">
 				<div class="" role="alert" aria-live="assertive" aria-atomic="true">
 					<div class="">
@@ -106,8 +101,8 @@
 					</div>
 				</div>
 			</div>
-			<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn" onclick="sendMsg()">Send message</button>
+			<button type="button" class="" data-bs-dismiss="modal">Close</button>
+			<button type="button" class="" onclick="sendMsg()">Send message</button>
 		</div>
 	</div>
 </div>
