@@ -61,9 +61,12 @@ function classToggle(selector, class1, class2) {
 }
 
 // modal
-function initModal(modalId, btnId) {
+function initModal(modalId, btnId, contId) {
     const modal = document.getElementById(modalId);
     const brnModal = document.getElementById(btnId);
+    const contModal = document.getElementById(contId);
+
+    if (!modal || !brnModal || !contModal) return false;
 
     brnModal.onclick = function() {
         modal.style.display = "flex";
@@ -73,5 +76,9 @@ function initModal(modalId, btnId) {
         modal.style.display = "none";
         modal.parentElement.classList.remove("cant-scroll");
     }
+
+    contModal.addEventListener('click', e => {
+        e.stopImmediatePropagation();
+    });
 }
 // modal end
