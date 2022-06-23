@@ -18,6 +18,8 @@ $g-color-b3: #5D84A6;
 $g-color-b4: #93AEBF;
 $g-color-w1: #DCEAF2;
 $g-color-w2: #fbfbfd;
+$g-color-bl: #24272d;
+$g-color-gr: #ced4da;
 
 $g-color-arr: (
         'b1': ($g-color-b1),
@@ -26,7 +28,9 @@ $g-color-arr: (
         'b4': ($g-color-b4),
         'w1': ($g-color-w1),
         'w2': ($g-color-w2),
-        'w0': white
+        'w0': white,
+        'bl': ($g-color-bl),
+        'gr': ($g-color-gr)
 );
 
 $g-breakpoints: (
@@ -144,7 +148,7 @@ $g-flex-align-content: (
   cursor: pointer;
   padding: 0.25rem 1rem;
   line-height: 1.25rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 %full {
@@ -161,13 +165,12 @@ $g-flex-align-content: (
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: $g-color-bl;
+  background-color: $g-color-w2;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid $g-color-gr;
   appearance: none;
   border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 // extends end
 
@@ -306,7 +309,7 @@ li {
   @each $key-back, $value-back in $g-color-arr {
     .bor-#{$key}-#{$key-back} {
       border: 1px solid $value;
-      border-radius: 0.5rem;
+      border-radius: 0.25rem;
       background: #{$value-back};
       padding: 1rem;
       margin: 1rem;
