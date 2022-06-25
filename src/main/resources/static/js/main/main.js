@@ -1,6 +1,6 @@
 window.onload = (event) => {
 	getNotionList(10);
-	initModal('modalToMe', 'btnModal', 'modalContents');
+	initModal('modalToMe', 'modalContents', 'btnModal', 'closeModal', 'btnCloseModal');
 };
 
 /*

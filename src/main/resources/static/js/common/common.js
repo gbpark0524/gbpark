@@ -61,24 +61,35 @@ function classToggle(selector, class1, class2) {
 }
 
 // modal
-function initModal(modalId, btnId, contId) {
+function initModal(modalId, contId, btnId, ...closeIds) {
     const modal = document.getElementById(modalId);
-    const brnModal = document.getElementById(btnId);
+    const btnModal = document.getElementById(btnId);
     const contModal = document.getElementById(contId);
 
-    if (!modal || !brnModal || !contModal) return false;
+    if (!modal || !btnModal || !contModal) return false;
 
-    brnModal.onclick = function() {
+    btnModal.onclick = function() {
         modal.style.display = "flex";
         modal.parentElement.classList.add("cant-scroll");
     }
     modal.onclick = function () {
-        modal.style.display = "none";
-        modal.parentElement.classList.remove("cant-scroll");
+        closeModal(modalId);
+    }
+
+    for (const closeId of closeIds) {
+        try {
+            document.getElementById(closeId).onclick = function () {closeModal(modalId)};
+        } catch (e) {console.log(e)}
     }
 
     contModal.addEventListener('click', e => {
         e.stopImmediatePropagation();
     });
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "none";
+    modal.parentElement.classList.remove("cant-scroll");
 }
 // modal end
