@@ -93,3 +93,23 @@ function closeModal(modalId) {
     modal.parentElement.classList.remove("cant-scroll");
 }
 // modal end
+
+function showToast(toastId) {
+    const modal = document.getElementById(toastId);
+    modal.classList.remove('hide');
+    setTimeout(function() {
+        modal.classList.add('show');
+    }, 100);
+
+    setTimeout(function() {
+        hideToast(toastId);
+    },7000);
+}
+
+function hideToast(toastId) {
+    const modal = document.getElementById(toastId);
+    modal.classList.remove('show');
+    setTimeout(function() {
+        modal.classList.add('hide');
+    }, 2000);
+}

@@ -288,6 +288,7 @@ li {
 
 .toast, %toast {
   display: flex;
+  opacity: 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -299,6 +300,7 @@ li {
   top: 0;
   position: relative;
   box-shadow: 1px 7px 14px -5px rgb(0 0 0 / 20%);
+  @include transition(opacity 2s linear);
   &:before {
     content: '';
     position: absolute;
@@ -309,9 +311,16 @@ li {
     border-top-left-radius:4px;
     border-bottom-left-radius: 4px;
   }
+  &.show {
+    opacity: 1;
+  }
   .btn-close{
     margin-left: 1rem;
   }
+}
+
+.hide {
+  display: none !important;
 }
 // simple class end
 
