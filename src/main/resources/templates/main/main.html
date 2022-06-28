@@ -81,13 +81,13 @@
 		</div>
 		<hr class="line">
 		<div class="modal-body">
-			<form class="fl-c-cc-it">
-				<label for="tome_title" class="my-q2">Title:</label>
-				<input type="text" class="input-text my-q2" id="tome_title">
-				<label for="tome_tel" class="my-q2">Email or phone:</label>
-				<input type="text" class="input-text my-q2" id="tome_tel">
-				<label for="tome_message" class="my-q2">Message:</label>
-				<textarea class="input-textarea" id="tome_message" style="height: 135px;"></textarea>
+			<form id="formToMe" class="fl-c-cc-it" action="/tome" method="post">
+				<label for="toMeTitle" class="my-q2">Title :</label>
+				<input id="toMeTitle" type="text" name="title" class="input-text my-q2">
+				<label for="toMeTel" class="my-q2">Email or phone :</label>
+				<input id="toMeTel" type="text" name="tel" class="input-text my-q2">
+				<label for="toMeMessage" class="my-q2">Message :</label>
+				<textarea id="toMeMessage" class="input-textarea" name="message" style="height: 135px;"></textarea>
 			</form>
 		</div>
 		<div class="fl-c-ic">
@@ -97,7 +97,7 @@
 			</div>
 			<div class="modal-footer fl-r-cc-ic ma-q2">
 				<button id="btnCloseModal" type="button" class="btn-b4 cl-bl hov-bg-b2" >Close</button>
-				<button type="button" class="" onclick="sendMsg()">Send message</button>
+				<button id="submitToMe" type="button" class="" onclick="sendMsg()">Send message</button>
 			</div>
 		</div>
 	</div>

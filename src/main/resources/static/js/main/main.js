@@ -1,6 +1,6 @@
 window.onload = (event) => {
 	getNotionList(10);
-	initModal('modalToMe', 'modalContents', 'btnModal', 'closeModal', 'btnCloseModal');
+	initModal("modalToMe", "modalContents", "btnModal", "closeModal", "btnCloseModal");
 };
 
 /*
@@ -8,11 +8,10 @@ window.onload = (event) => {
 */
 
 function sendMsg() {
-	// title
-	const title = document.getElementById("tome_title").value;
-	const tel = document.getElementById("tome_tel").value;
-	const message = document.getElementById("tome_message").value;
-	toMeSave(title, tel, message);
+	if (chkToMe()) {
+		postToMe();
+		closeModal("modalToMe")
+	}
 }
 
 /*
@@ -53,27 +52,34 @@ function displayNotionList(results) {
 /*
 * to me
 */
-function toMeSave(title, tel, message) {
+function chkToMe() {
+	const title = document.getElementById("toMeTitle").value;
+	const message = document.getElementById("toMeMessage").value;
 	if (!title || !message) {
 		showToast('toastToMe');
-		return;
+		return false;
 	}
+	return true;
+}
 
-    var formdata = new FormData();
-    formdata.append("title", title);
-    formdata.append("message", message);
-    formdata.append("tel", tel);
+function postToMe() {
+	const form = document.getElementById("formToMe");
+	const formData = new FormData();
+	const {value} = form["title"];
+	formData.append("title", value);
+	formData.append("message", form["message"].value);
+	formData.append("tel", form["tel"].value);
 
 	const requestOptions = {
 		method: "POST",
-		body: formdata,
+		body: formData,
 		redirect: "follow"
 	};
 
 	fetch("/tome", requestOptions)
 		.then(response => response.text())
 		.then(result => alert(result))
-		.then(() => toMeModal.hide())
+		.then(() => form.reset())
 		.catch(error => alert(error))
 		.then(error => console.log(error));
 }

@@ -32,11 +32,6 @@ public class MainController {
 		return "main/main";
 	}
 
-	@GetMapping("/tome")
-	public String getToMe() {
-		return "main/toMe";
-	}
-
 	@PostMapping("/tome")
 	@ResponseBody
 	public String saveToMe(@RequestParam String title, @RequestParam String tel, @RequestParam String message) {
