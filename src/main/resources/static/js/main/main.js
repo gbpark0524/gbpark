@@ -25,9 +25,9 @@ function getNotionList(pageSize) {
 
 	fetch("/notion?pageSize=" + pageSize, requestOptions)
 		.then(response => response.json())
-		.then(json => {
+		.then(({results}) => {
 			setDisplay("loadingNotion","none")
-			displayNotionList(json.results);
+			displayNotionList(results);
 		})
 		.catch(error => console.log("error", error));
 }
@@ -37,13 +37,13 @@ function displayNotionList(results) {
 	while (notionList.hasChildNodes()) {
 		notionList.removeChild(notionList.firstChild);
 	}
-	for (const result of results) {
+	for (const {url, properties:{title:{title}}} of results) {
+		const {plain_text} = title[0];
 		const list = document.createElement("li");
 		list.className = "child-notion";
 		const link = document.createElement("a");
-		link.setAttribute("href", result.url);
-		const title = result.properties.title.title[0].plain_text;
-		link.innerText = title.replace("- log", "")/* + " : " + result.last_edited_time.substring(0, 10)*/;
+		link.setAttribute("href", url);
+		link.innerText = plain_text.replace("- log", "")/* + " : " + result.last_edited_time.substring(0, 10)*/;
 		notionList.appendChild(list);
 		list.appendChild(link);
 	}
@@ -64,11 +64,11 @@ function chkToMe() {
 
 function postToMe() {
 	const form = document.getElementById("formToMe");
+	const [title, message, tel] = form;
 	const formData = new FormData();
-	const {value} = form["title"];
-	formData.append("title", value);
-	formData.append("message", form["message"].value);
-	formData.append("tel", form["tel"].value);
+	formData.append("title", title.value);
+	formData.append("message", message.value);
+	formData.append("tel", tel.value);
 
 	const requestOptions = {
 		method: "POST",
