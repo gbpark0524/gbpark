@@ -28,7 +28,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'com.querydsl:querydsl-jpa:5.0.0'
 	implementation 'com.querydsl:querydsl-apt:5.0.0'
-	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+	implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 	implementation group: 'com.navercorp.lucy', name: 'lucy-xss-servlet', version: '2.0.1'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
 	implementation 'org.apache.commons:commons-lang3'
