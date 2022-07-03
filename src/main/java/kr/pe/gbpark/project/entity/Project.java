@@ -13,17 +13,31 @@ import javax.persistence.Entity;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Project extends Board {
 	private String linkAddress;
-	private String mainColor;
-	private int displayOrder;
+	private String mainColor = "black";
+	private int displayOrder = 0;
 	//todo - make join badge entity
 	//private String badge;
 
+	public Project(String title, String content, String linkAddress) {
+		super(title, content);
+		this.linkAddress = linkAddress;
+	}
+	public Project(String title, String content, String linkAddress, String mainColor) {
+		super(title, content);
+		this.linkAddress = linkAddress;
+		this.mainColor = mainColor;
+	}
+
+	public Project(String title, String content, String linkAddress, int displayOrder) {
+		super(title, content);
+		this.linkAddress = linkAddress;
+		this.displayOrder = displayOrder;
+	}
 
 	public Project(String title, String content, String linkAddress, String mainColor, int displayOrder) {
 		super(title, content);
 		this.linkAddress = linkAddress;
-		// todo - need random color generator??
-		this.mainColor = StringUtils.isNotBlank(mainColor) ? mainColor : "black";
+		this.mainColor = mainColor;
 		this.displayOrder = displayOrder;
 	}
 
