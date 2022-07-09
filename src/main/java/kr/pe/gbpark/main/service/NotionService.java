@@ -1,15 +1,14 @@
 package kr.pe.gbpark.main.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.pe.gbpark.main.dto.NotionDto;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import java.util.*;
 
-import okhttp3.*;
+import java.util.Objects;
 
 @Service
 public class NotionService {
@@ -38,13 +37,11 @@ public class NotionService {
 				.addHeader("Authorization", AUTHORIZATION)
 				.addHeader("Notion-Version", notionVersion);
 
-		try {
-			Response response = client.newCall(builder.build()).execute();
+		try (Response response = client.newCall(builder.build()).execute()){
+
 			if(response.code() != HttpStatus.OK.value()) throw new Exception("Code exception occur, code : " + response.code());
 
-			String strObj = Objects.requireNonNull(response.body()).string();
-
-			return  strObj;
+			return Objects.requireNonNull(response.body()).string();
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
