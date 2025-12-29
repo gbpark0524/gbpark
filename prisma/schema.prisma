@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id        Int       @id @default(autoincrement())
+  order     Int       @default(0)
+  title     String
+  thumbnail String?
+  summary   String?
+  content   String?
+  techStack String[]
+  githubUrl String?
+  demoUrl   String?
+  featured  Boolean   @default(false)
+  published Boolean   @default(false)
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
