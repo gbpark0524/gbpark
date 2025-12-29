@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 
+export const revalidate = 3600;
+
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
     where: { published: true },
