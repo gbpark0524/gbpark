@@ -1,12 +1,15 @@
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Github, ExternalLink, Calendar } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github-dark.css';
+import { GithubIcon } from '@/components/icons/github';
+
+export const revalidate = 3600;
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -94,7 +97,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors"
             >
-              <Github className="w-4 h-4" />
+              <GithubIcon className="w-4 h-4" />
               <span>GitHub</span>
             </a>
           )}
