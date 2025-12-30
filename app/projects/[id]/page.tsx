@@ -3,11 +3,27 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, ExternalLink, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/github-dark.css';
+
+import dynamic from 'next/dynamic';
 import { GithubIcon } from '@/components/icons/github';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const MarkdownContent = dynamic(
+  () => import('@/components/markdown-content'),
+  {
+    loading: () => (
+      <div className="space-y-3">
+        <Skeleton className="h-6 w-1/3" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-2/3" />
+        <Skeleton className="h-32 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-3/4" />
+      </div>
+    ),
+  }
+);
 
 export const revalidate = 3600;
 
@@ -134,14 +150,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       {/* 본문 (마크다운) */}
       {project.content && (
-        <article className="prose prose-neutral dark:prose-invert max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeHighlight]}
-          >
-            {project.content}
-          </ReactMarkdown>
-        </article>
+        <MarkdownContent content={project.content} />
       )}
     </div>
   );
