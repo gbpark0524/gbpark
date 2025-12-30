@@ -10,6 +10,15 @@ export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({
     where: { published: true },
     orderBy: [{ featured: 'desc' }, { order: 'asc' }],
+    select: {
+      id: true,
+      title: true,
+      thumbnail: true,
+      summary: true,
+      techStack: true,
+      featured: true,
+      // content 제외 - 목록에서는 불필요
+    },
   });
 
   return (
