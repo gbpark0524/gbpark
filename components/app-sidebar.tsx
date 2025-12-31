@@ -2,10 +2,7 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  Command,
   House,
-  GalleryVerticalEnd,
   Rocket,
 } from "lucide-react"
 
@@ -32,23 +29,6 @@ const data = {
     email: "gbpark0524@gmail.com",
     avatar: "",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       name: "Home",
@@ -57,6 +37,11 @@ const data = {
     },
     {
       name: "Projects",
+      url: "/projects",
+      icon: Rocket,
+    },
+    {
+      name: "GitHub",
       url: "/projects",
       icon: Rocket,
     },
