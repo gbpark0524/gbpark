@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import dynamic from 'next/dynamic';
-import { GithubIcon } from '@/components/icons/github';
+import { GithubIcon } from "@/components/icons"
 import { Skeleton } from '@/components/ui/skeleton';
 
 const MarkdownContent = dynamic(

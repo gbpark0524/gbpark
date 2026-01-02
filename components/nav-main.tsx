@@ -1,8 +1,7 @@
 "use client"
 
-import {
-  type LucideIcon,
-} from "lucide-react"
+import { type LucideIcon, } from "lucide-react"
+import { type ComponentType } from "react"
 
 import {
   SidebarGroup,
@@ -12,17 +11,19 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 
+type IconType = LucideIcon | ComponentType<{ className?: string }>
+
 export function NavMain({
   items,
 }: {
   items: {
     name: string
     url: string
-    icon: LucideIcon
+    icon: IconType
   }[]
 }) {
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup className="">
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>

@@ -2,12 +2,12 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  Command,
-  House,
-  GalleryVerticalEnd,
   Rocket,
+  BookOpen,
 } from "lucide-react"
+
+import { GithubIcon } from "@/components/icons"
+import { MY_LINKS } from '@links';
 
 import {
   IconInnerShadowTop,
@@ -25,6 +25,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import Link from "next/link";
 
 const data = {
   user: {
@@ -32,34 +33,22 @@ const data = {
     email: "gbpark0524@gmail.com",
     avatar: "",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
-    {
-      name: "Home",
-      url: "/",
-      icon: House,
-    },
     {
       name: "Projects",
       url: "/projects",
       icon: Rocket,
     },
+    {
+      name: "GitHub",
+      url: MY_LINKS.GITHUB,
+      icon: GithubIcon,
+    },
+    {
+      name: "Tech Blog",
+      url: MY_LINKS.BLOG,
+      icon: BookOpen,
+    }
   ],
 }
 
@@ -73,10 +62,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <a href="#">
+              <Link href="/">
                 <IconInnerShadowTop className="size-5!" />
                 <span className="text-base font-semibold">GB Park.</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

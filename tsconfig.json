@@ -19,7 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@links": ["./constants/links.ts"],
+      "@styles": ["./constants/styles.ts"],
+      "@icons": ["./components/icons.tsx"]
     }
   },
   "include": [

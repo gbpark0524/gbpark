@@ -1,0 +1,1 @@
+export const CARD_HOVER = "hover:shadow-lg hover:-translate-y-1 hover:border-black/50 transition-all duration-200"
