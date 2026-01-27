@@ -15,18 +15,6 @@ export function LoginForm() {
       </CardHeader>
       <CardContent className="space-y-4">
         <LoginButton />
-        
-        <p className="text-center text-sm text-muted-foreground">
-          By continuing, you agree to our{" "}
-          <a href="#" className="underline underline-offset-4 hover:text-primary">
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a href="#" className="underline underline-offset-4 hover:text-primary">
-            Privacy Policy
-          </a>
-          .
-        </p>
       </CardContent>
     </Card>
   )

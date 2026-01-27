@@ -37,7 +37,7 @@ export default function Home() {
           className="group p-6 border rounded-2xl hover:border-black transition-all bg-white shadow-sm"
         >
           <div className="flex items-center gap-3 mb-2">
-            <BookOpen size={24} className="text-blue-500" />
+            <BookOpen className="text-blue-500" />
             <h3 className="font-bold text-xl">Tech Blog</h3>
           </div>
           <p className="text-gray-500 text-sm">

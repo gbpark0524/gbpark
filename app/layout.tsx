@@ -5,15 +5,6 @@ import { AuthProvider } from "@/components/auth-provider";
 import { NavUser } from "@/components/nav-user";
 import "./globals.css";
 
-const data = {
-  user:null
-  // user: {
-  //   name: "gbpark",
-  //   email: "gbpark0524@gmail.com",
-  //   avatar: "",
-  // },
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -32,7 +23,7 @@ export default function RootLayout({
                   <SidebarTrigger />
                   <span className="font-bold">Main</span>
                 </div>
-                <NavUser user={data.user} />
+                <NavUser/>
               </div>
               <div className="p-6">{children}</div>
             </main>

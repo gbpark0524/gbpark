@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import {
+  GithubIcon,
   House,
   Rocket,
 } from "lucide-react"
@@ -36,7 +37,7 @@ const data = {
     {
       name: "GitHub",
       url: "/projects",
-      icon: Rocket,
+      icon: GithubIcon,
     },
   ],
 }
