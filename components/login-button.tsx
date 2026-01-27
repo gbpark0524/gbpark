@@ -2,7 +2,7 @@
 
 import { signIn, useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
-import { GoogleIcon } from "./icons/google"
+import { GoogleIcon } from "@/components/google"
 
 export function LoginButton() {
   const { data: session, status } = useSession()

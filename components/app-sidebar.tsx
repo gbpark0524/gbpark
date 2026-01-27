@@ -39,11 +39,6 @@ const data = {
     },
     {
       name: "GitHub",
-      url: "/projects",
-      icon: GithubIcon,
-    },
-    {
-      name: "GitHub",
       url: MY_LINKS.GITHUB,
       icon: GithubIcon,
     },
