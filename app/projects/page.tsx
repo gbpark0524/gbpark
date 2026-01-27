@@ -97,7 +97,9 @@ export default async function ProjectsPage() {
       {projects.length === 0 && (
         <div className="text-center py-20">
           <Rocket className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-          <p className="text-muted-foreground">아직 등록된 프로젝트가 없습니다.</p>
+          <p className="text-muted-foreground">
+            아직 등록된 프로젝트가 없습니다.
+          </p>
         </div>
       )}
     </div>

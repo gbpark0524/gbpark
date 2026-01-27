@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import {
+  GithubIcon,
   Rocket,
   BookOpen,
 } from "lucide-react"
 
-import { GithubIcon } from "@/components/icons"
 import { MY_LINKS } from '@links';
 
 import {
@@ -14,11 +14,9 @@ import {
 } from "@tabler/icons-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -38,6 +36,11 @@ const data = {
       name: "Projects",
       url: "/projects",
       icon: Rocket,
+    },
+    {
+      name: "GitHub",
+      url: "/projects",
+      icon: GithubIcon,
     },
     {
       name: "GitHub",
@@ -73,9 +76,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
