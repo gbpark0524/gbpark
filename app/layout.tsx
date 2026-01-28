@@ -12,20 +12,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="antialiased">
+      <body className="antialiased min-h-svh flex flex-col">
         <AuthProvider>
           <SidebarProvider>
             <AppSidebar />
-
-            <main className="w-full">
+            <main className="flex-1 flex flex-col">
               <div className="p-4 border-b flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <SidebarTrigger />
                   <span className="font-bold">Main</span>
                 </div>
-                <NavUser/>
+                <NavUser />
               </div>
-              <div className="p-6">{children}</div>
+              <div className="flex-1 flex items-center justify-center p-6">{children}</div>
             </main>
           </SidebarProvider>
         </AuthProvider>

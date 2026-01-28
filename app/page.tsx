@@ -12,17 +12,18 @@ import { CARD_HOVER } from "@styles";
 
 export default function Home() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-12">
-      <header className="mb-12">
-        <h2 className="text-4xl font-extrabold">Hello, World!</h2>
-        <p className="text-lg text-gray-600">
-          <span>I&apos;m GB Park.</span>
-          <br />
-        </p>
-      </header>
+    <div className="w-full max-w-3xl text-center space-y-12">
+  <header className="space-y-4">
+    <h1 className="text-5xl font-extrabold tracking-tight">
+      Hello, World!
+    </h1>
+    <p className="text-xl text-muted-foreground">
+      I&apos;m GB Park.
+    </p>
+  </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-<Link href="/projects">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <Link href="/projects">
           <Card className={CARD_HOVER}>
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
@@ -47,6 +48,6 @@ export default function Home() {
           </Card>
         </Link>
       </div>
-    </main>
+    </div>
   );
 }

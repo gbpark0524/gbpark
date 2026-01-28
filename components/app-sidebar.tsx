@@ -1,29 +1,24 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
+  House,
   GithubIcon,
   Rocket,
   BookOpen,
-} from "lucide-react"
-
-import { MY_LINKS } from '@links';
-
-import {
-  IconInnerShadowTop,
-} from "@tabler/icons-react"
-
-import { NavMain } from "@/components/nav-main"
+  Terminal,
+} from "lucide-react";
+import { MY_LINKS } from "@links";
+import { NavMain } from "@/components/nav-main";
 import {
   Sidebar,
   SidebarContent,
+  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
-} from "@/components/ui/sidebar"
-import Link from "next/link";
+} from "@/components/ui/sidebar";
 
 const data = {
   user: {
@@ -32,6 +27,11 @@ const data = {
     avatar: "",
   },
   navMain: [
+    {
+      name: "Home",
+      url: "/",
+      icon: House,
+    },
     {
       name: "Projects",
       url: "/projects",
@@ -46,9 +46,9 @@ const data = {
       name: "Tech Blog",
       url: MY_LINKS.BLOG,
       icon: BookOpen,
-    }
+    },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -56,22 +56,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:p-1.5!"
-            >
-              <Link href="/">
-                <IconInnerShadowTop className="size-5!" />
-                <span className="text-base font-semibold">GB Park.</span>
-              </Link>
+            <SidebarMenuButton size="lg">
+              <div className="flex aspect-square size-8 items-center justify-center shrink-0 rounded-lg bg-primary text-primary-foreground">
+                <Terminal className="size-4" />
+              </div>
+              <div className="flex flex-col gap-0.5 leading-none">
+                <span className="font-semibold">GB Park</span>
+                {/* <span className="text-xs text-muted-foreground">Portfolio</span> */}
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <SidebarGroup>
+          <NavMain items={data.navMain} />
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarRail />
     </Sidebar>
-  )
+  );
 }

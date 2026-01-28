@@ -17,15 +17,14 @@ export default async function ProjectsPage() {
       summary: true,
       techStack: true,
       featured: true,
-      // content 제외 - 목록에서는 불필요
     },
   });
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="w-full max-w-5xl self-start space-y-8">
       {/* 헤더 */}
-      <header className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
+      <header className="space-y-2">
+        <div className="flex items-center gap-3">
           <Rocket className="w-8 h-8" />
           <h1 className="text-3xl font-bold">Projects</h1>
         </div>
@@ -74,7 +73,9 @@ export default async function ProjectsPage() {
               {project.techStack.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
                   {project.techStack.slice(0, 4).map((tech) => (
-                    <Badge key={tech} variant="outline"
+                    <Badge
+                      key={tech}
+                      variant="outline"
                       className="gap-1 hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       <Hash className="w-3 h-3" />
