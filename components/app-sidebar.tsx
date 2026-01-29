@@ -56,13 +56,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg">
+            <SidebarMenuButton
+              size="lg"
+              className="pointer-events-none hover:bg-transparent active:bg-transparent"
+            >
               <div className="flex aspect-square size-8 items-center justify-center shrink-0 rounded-lg bg-primary text-primary-foreground">
                 <Terminal className="size-4" />
               </div>
               <div className="flex flex-col gap-0.5 leading-none">
                 <span className="font-semibold">GB Park</span>
-                {/* <span className="text-xs text-muted-foreground">Portfolio</span> */}
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>

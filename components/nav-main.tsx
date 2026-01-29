@@ -7,6 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 
@@ -21,12 +22,18 @@ export function NavMain({
     icon: IconType;
   }[];
 }) {
+  const { setOpenMobile } = useSidebar();
+
+  const handleClick = () => {
+    setOpenMobile(false);
+  };
+
   return (
     <SidebarMenu>
       {items.map((item) => (
         <SidebarMenuItem key={item.name}>
           <SidebarMenuButton asChild>
-            <Link href={item.url}>
+            <Link href={item.url} onClick={handleClick}>
               <item.icon className="size-4" />
               <span>{item.name}</span>
             </Link>
