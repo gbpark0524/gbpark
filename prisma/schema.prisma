@@ -14,13 +14,15 @@ model Project {
   thumbnail String?
   summary   String?
   content   String?
-  techStack String[]
-  githubUrl String?
-  demoUrl   String?
+  techStack String[]  @map("tech_stack")
+  githubUrl String?   @map("github_url")
+  demoUrl   String?   @map("demo_url")
   featured  Boolean   @default(false)
   published Boolean   @default(false)
-  startDate DateTime?
-  endDate   DateTime?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  startDate DateTime? @map("start_date")
+  endDate   DateTime? @map("end_date")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("projects")
 }
