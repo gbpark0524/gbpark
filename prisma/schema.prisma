@@ -26,3 +26,27 @@ model Project {
 
   @@map("projects")
 }
+
+model User {
+  id         String   @id @default(cuid())
+  providerId String   @unique @map("provider_id")
+  provider   String
+  nickname   String?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  admin      Admin?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+  @@unique([provider, providerId])
+  @@map("user")
+}
+
+model Admin {
+  id String @id @default(cuid())
+  userId String   @unique @map("user_id")
+  canAccessAdmin  Boolean @default(true) @map("can_access_admin")
+  canEditAdmin    Boolean @default(false) @map("can_edit_admin")
+
+  user    User @relation(fields: [userId], references: [id])
+  
+  @@map("admin")
+}
